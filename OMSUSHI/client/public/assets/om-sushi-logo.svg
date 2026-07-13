@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-label="OM Sushi">
+  <rect width="256" height="256" rx="128" fill="#111113"/>
+  <circle cx="128" cy="128" r="104" fill="#fff"/>
+  <circle cx="128" cy="128" r="88" fill="#dc2626"/>
+  <circle cx="128" cy="128" r="68" fill="#111113"/>
+  <path d="M77 132c0-34 22-58 51-58s51 24 51 58-22 58-51 58-51-24-51-58Zm26 0c0 21 10 35 25 35s25-14 25-35-10-35-25-35-25 14-25 35Z" fill="#fff"/>
+  <path d="M64 74c21-24 44-36 70-36 24 0 44 9 58 27" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>
+  <text x="128" y="224" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="900" fill="#111113">SUSHI</text>
+</svg>

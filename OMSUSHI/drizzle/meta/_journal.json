@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "mysql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1783013624868,
+      "tag": "0000_shallow_squadron_supreme",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1783015017337,
+      "tag": "0001_red_james_howlett",
+      "breakpoints": true
+    }
+  ]
+}

@@ -1,0 +1,3991 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer components {
+  .alo-faithful .alo-pricing {
+    background:
+      radial-gradient(42% 38% at 50% 34%, oklch(82% 0.13 62 / 0.2), transparent 66%);
+  }
+
+  .alo-faithful .alo-plan-grid {
+    gap: 18px;
+  }
+
+  .alo-faithful .alo-plan-card {
+    border-color: oklch(86% 0.025 76);
+    background:
+      linear-gradient(180deg, oklch(100% 0 0 / 0.95), oklch(98% 0.018 82 / 0.92)),
+      oklch(99% 0.012 82);
+    box-shadow:
+      0 1px 0 oklch(100% 0 0 / 0.9) inset,
+      0 24px 70px -46px oklch(17% 0.02 40 / 0.48);
+  }
+
+  .alo-faithful .alo-plan-card::before {
+    height: 4px;
+    background: linear-gradient(90deg, oklch(72% 0.2 55), oklch(66% 0.19 36));
+    opacity: 0.85;
+  }
+
+  .alo-faithful .alo-plan-card h3,
+  .alo-faithful .alo-plan-price strong {
+    color: oklch(15% 0.02 38);
+  }
+
+  .alo-faithful .alo-plan-card p {
+    color: oklch(42% 0.018 45);
+  }
+
+  .alo-faithful .alo-plan-label {
+    color: oklch(61% 0.19 42);
+  }
+
+  .alo-faithful .alo-plan-card ul {
+    color: oklch(25% 0.018 45 / 0.86);
+  }
+
+  .alo-faithful .alo-plan-card li::before {
+    background: oklch(91% 0.07 58);
+    color: oklch(56% 0.19 42);
+  }
+
+  .alo-faithful .alo-pricing .alo-pill-outline {
+    color: oklch(15% 0.02 38);
+    border-color: oklch(79% 0.025 76);
+    background: oklch(100% 0 0 / 0.88);
+    box-shadow: 0 10px 25px -20px oklch(16% 0.02 40 / 0.4);
+  }
+
+  .alo-faithful .alo-pricing .alo-pill-outline:hover {
+    background: oklch(96% 0.035 82);
+  }
+
+  .alo-faithful .alo-plan-card-featured {
+    color: var(--alo-cream);
+    border-color: oklch(67% 0.18 42 / 0.52);
+    background:
+      radial-gradient(68% 56% at 92% 0%, oklch(62% 0.21 42 / 0.5), transparent 62%),
+      radial-gradient(50% 44% at 0% 100%, oklch(73% 0.18 62 / 0.12), transparent 64%),
+      linear-gradient(155deg, oklch(18% 0.025 38), oklch(13% 0.018 36) 56%, oklch(19% 0.028 42));
+    box-shadow:
+      0 1px 0 oklch(100% 0 0 / 0.1) inset,
+      0 34px 95px -42px oklch(13% 0.02 38 / 0.82);
+  }
+
+  .alo-faithful .alo-plan-card-featured::before {
+    background: linear-gradient(90deg, oklch(78% 0.19 62), oklch(66% 0.23 38));
+    opacity: 1;
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-badge {
+    background: linear-gradient(135deg, oklch(72% 0.22 55), oklch(62% 0.24 34));
+    color: white;
+    box-shadow: 0 12px 28px -18px oklch(67% 0.24 38);
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-label {
+    color: oklch(78% 0.17 62);
+  }
+
+  .alo-faithful .alo-plan-card-featured h3,
+  .alo-faithful .alo-plan-card-featured .alo-plan-price strong {
+    color: var(--alo-cream);
+  }
+
+  .alo-faithful .alo-plan-card-featured p,
+  .alo-faithful .alo-plan-card-featured ul {
+    color: oklch(97% 0.02 80 / 0.74);
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-price small,
+  .alo-faithful .alo-plan-card-featured .alo-plan-price span {
+    color: oklch(97% 0.02 80 / 0.62);
+  }
+
+  .alo-faithful .alo-plan-card-featured li::before {
+    background: oklch(73% 0.18 62 / 0.18);
+    color: oklch(80% 0.17 64);
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-pill-primary {
+    background: linear-gradient(135deg, oklch(73% 0.22 55), oklch(62% 0.25 34));
+    box-shadow: 0 22px 42px -30px oklch(68% 0.24 42);
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-cta {
+    width: 100%;
+    max-width: none;
+    min-height: 390px;
+    margin: 96px 0 0;
+    padding: 72px max(32px, calc((100vw - 1152px) / 2 + 48px));
+    border-radius: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    overflow: hidden;
+    color: var(--alo-cream);
+    background:
+      radial-gradient(58% 120% at 92% 0%, oklch(55% 0.22 36 / 0.95), transparent 62%),
+      linear-gradient(100deg, oklch(11% 0.03 35) 0%, oklch(12% 0.03 35) 44%, oklch(25% 0.1 34) 74%, oklch(38% 0.18 34) 100%);
+    box-shadow: none;
+  }
+
+  .alo-faithful .alo-cta::before {
+    display: none;
+  }
+
+  .alo-faithful .alo-cta > div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 720px) minmax(260px, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: 48px;
+    align-items: end;
+  }
+
+  .alo-faithful .alo-cta .alo-kicker,
+  .alo-faithful .alo-cta h2,
+  .alo-faithful .alo-cta p {
+    grid-column: 1;
+  }
+
+  .alo-faithful .alo-cta .alo-kicker {
+    color: var(--alo-cream);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+  }
+
+  .alo-faithful .alo-cta h2 {
+    margin-top: 18px;
+    color: var(--alo-cream);
+    font-size: clamp(3.2rem, 5vw, 5.85rem);
+    line-height: 0.96;
+    font-weight: 900;
+    max-width: 760px;
+  }
+
+  .alo-faithful .alo-cta h2 span {
+    color: var(--alo-flame);
+    font-style: italic;
+  }
+
+  .alo-faithful .alo-cta p {
+    max-width: 610px;
+    margin-top: 22px;
+    color: oklch(97% 0.02 80 / 0.72);
+    font-size: 1.15rem;
+    line-height: 1.55;
+  }
+
+  .alo-faithful .alo-cta-actions {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: end;
+    align-self: end;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .alo-faithful .alo-cta-actions .alo-pill {
+    min-height: 48px;
+    padding: 0 26px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .alo-faithful .alo-cta-actions .alo-pill-primary {
+    background: linear-gradient(135deg, oklch(70% 0.24 48), oklch(62% 0.28 32));
+    color: white;
+    box-shadow: none;
+  }
+
+  .alo-faithful .alo-cta-actions .alo-pill-outline {
+    color: var(--alo-cream);
+    border: 1px solid oklch(97% 0.02 80 / 0.26);
+    background: transparent;
+  }
+
+  @media (max-width: 980px) {
+    .alo-faithful .alo-cta {
+      min-height: auto;
+      padding: 58px 24px;
+    }
+
+    .alo-faithful .alo-cta > div {
+      grid-template-columns: 1fr;
+    }
+
+    .alo-faithful .alo-cta-actions {
+      grid-column: 1;
+      margin-top: 32px;
+      justify-self: start;
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .alo-faithful .alo-cta {
+      margin-top: 72px;
+      padding: 46px 20px;
+    }
+
+    .alo-faithful .alo-cta h2 {
+      font-size: clamp(2.55rem, 13vw, 3.55rem);
+    }
+
+    .alo-faithful .alo-cta-actions,
+    .alo-faithful .alo-cta-actions .alo-pill {
+      width: 100%;
+    }
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-pricing {
+    background:
+      radial-gradient(42% 38% at 50% 34%, oklch(82% 0.13 62 / 0.2), transparent 66%);
+  }
+
+  .alo-faithful .alo-plan-grid {
+    gap: 18px;
+  }
+
+  .alo-faithful .alo-plan-card {
+    border-color: oklch(86% 0.025 76);
+    background:
+      linear-gradient(180deg, oklch(100% 0 0 / 0.95), oklch(98% 0.018 82 / 0.92)),
+      oklch(99% 0.012 82);
+    box-shadow:
+      0 1px 0 oklch(100% 0 0 / 0.9) inset,
+      0 24px 70px -46px oklch(17% 0.02 40 / 0.48);
+  }
+
+  .alo-faithful .alo-plan-card::before {
+    height: 4px;
+    background: linear-gradient(90deg, oklch(72% 0.2 55), oklch(66% 0.19 36));
+    opacity: 0.85;
+  }
+
+  .alo-faithful .alo-plan-card h3,
+  .alo-faithful .alo-plan-price strong {
+    color: oklch(15% 0.02 38);
+  }
+
+  .alo-faithful .alo-plan-card p {
+    color: oklch(42% 0.018 45);
+  }
+
+  .alo-faithful .alo-plan-label {
+    color: oklch(61% 0.19 42);
+  }
+
+  .alo-faithful .alo-plan-card ul {
+    color: oklch(25% 0.018 45 / 0.86);
+  }
+
+  .alo-faithful .alo-plan-card li::before {
+    background: oklch(91% 0.07 58);
+    color: oklch(56% 0.19 42);
+  }
+
+  .alo-faithful .alo-pricing .alo-pill-outline {
+    color: oklch(15% 0.02 38);
+    border-color: oklch(79% 0.025 76);
+    background: oklch(100% 0 0 / 0.88);
+    box-shadow: 0 10px 25px -20px oklch(16% 0.02 40 / 0.4);
+  }
+
+  .alo-faithful .alo-pricing .alo-pill-outline:hover {
+    background: oklch(96% 0.035 82);
+  }
+
+  .alo-faithful .alo-plan-card-featured {
+    color: var(--alo-cream);
+    border-color: oklch(67% 0.18 42 / 0.52);
+    background:
+      radial-gradient(68% 56% at 92% 0%, oklch(62% 0.21 42 / 0.5), transparent 62%),
+      radial-gradient(50% 44% at 0% 100%, oklch(73% 0.18 62 / 0.12), transparent 64%),
+      linear-gradient(155deg, oklch(18% 0.025 38), oklch(13% 0.018 36) 56%, oklch(19% 0.028 42));
+    box-shadow:
+      0 1px 0 oklch(100% 0 0 / 0.1) inset,
+      0 34px 95px -42px oklch(13% 0.02 38 / 0.82);
+  }
+
+  .alo-faithful .alo-plan-card-featured::before {
+    background: linear-gradient(90deg, oklch(78% 0.19 62), oklch(66% 0.23 38));
+    opacity: 1;
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-badge {
+    background: linear-gradient(135deg, oklch(72% 0.22 55), oklch(62% 0.24 34));
+    color: white;
+    box-shadow: 0 12px 28px -18px oklch(67% 0.24 38);
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-label {
+    color: oklch(78% 0.17 62);
+  }
+
+  .alo-faithful .alo-plan-card-featured h3,
+  .alo-faithful .alo-plan-card-featured .alo-plan-price strong {
+    color: var(--alo-cream);
+  }
+
+  .alo-faithful .alo-plan-card-featured p,
+  .alo-faithful .alo-plan-card-featured ul {
+    color: oklch(97% 0.02 80 / 0.74);
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-price small,
+  .alo-faithful .alo-plan-card-featured .alo-plan-price span {
+    color: oklch(97% 0.02 80 / 0.62);
+  }
+
+  .alo-faithful .alo-plan-card-featured li::before {
+    background: oklch(73% 0.18 62 / 0.18);
+    color: oklch(80% 0.17 64);
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-pill-primary {
+    background: linear-gradient(135deg, oklch(73% 0.22 55), oklch(62% 0.25 34));
+    box-shadow: 0 22px 42px -30px oklch(68% 0.24 42);
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-pricing {
+    width: min(72rem, 100%);
+    padding-top: 104px;
+  }
+
+  .alo-faithful .alo-pricing .alo-section-head {
+    margin-bottom: 30px;
+  }
+
+  .alo-faithful .alo-plan-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    align-items: stretch;
+  }
+
+  .alo-faithful .alo-plan-card {
+    position: relative;
+    min-height: 520px;
+    padding: 28px;
+    border: 1px solid oklch(16% 0.02 40 / 0.08);
+    border-radius: 30px;
+    background:
+      linear-gradient(180deg, oklch(100% 0 0 / 0.94), oklch(98% 0.02 80 / 0.86)),
+      var(--alo-card);
+    box-shadow: 0 18px 55px -38px oklch(16% 0.02 40 / 0.48);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .alo-faithful .alo-plan-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    height: 6px;
+    background: var(--alo-gradient-flame);
+  }
+
+  .alo-faithful .alo-plan-card-featured {
+    color: var(--alo-cream);
+    border-color: oklch(68% 0.24 42 / 0.42);
+    background:
+      radial-gradient(70% 58% at 88% 0%, oklch(68% 0.24 42 / 0.7), transparent 62%),
+      linear-gradient(145deg, oklch(14% 0.03 38), oklch(25% 0.08 36));
+    box-shadow: 0 30px 90px -32px oklch(16% 0.02 40 / 0.72);
+    transform: translateY(-12px);
+  }
+
+  .alo-faithful .alo-plan-badge {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    border-radius: 999px;
+    padding: 7px 12px;
+    background: var(--alo-gradient-flame);
+    color: white;
+    font-size: 0.72rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .alo-faithful .alo-plan-label {
+    color: var(--alo-flame);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-label {
+    color: var(--alo-ember);
+  }
+
+  .alo-faithful .alo-plan-card h3 {
+    margin-top: 16px;
+    font-size: clamp(2.2rem, 3.2vw, 3.3rem);
+    line-height: 0.98;
+  }
+
+  .alo-faithful .alo-plan-card p {
+    margin-top: 14px;
+    color: var(--alo-muted);
+    font-size: 0.98rem;
+    line-height: 1.55;
+  }
+
+  .alo-faithful .alo-plan-card-featured p {
+    color: oklch(97% 0.02 80 / 0.72);
+  }
+
+  .alo-faithful .alo-plan-price {
+    margin-top: 26px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    align-items: end;
+    column-gap: 8px;
+  }
+
+  .alo-faithful .alo-plan-price small {
+    grid-column: 1 / -1;
+    margin-bottom: 5px;
+    color: oklch(16% 0.02 40 / 0.46);
+    font-size: 0.72rem;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-price small {
+    color: oklch(97% 0.02 80 / 0.56);
+  }
+
+  .alo-faithful .alo-plan-price strong {
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-size: clamp(2.65rem, 4.2vw, 4.3rem);
+    line-height: 0.9;
+  }
+
+  .alo-faithful .alo-plan-price span {
+    margin-bottom: 6px;
+    color: var(--alo-muted);
+    font-size: 0.95rem;
+    font-weight: 800;
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-price span {
+    color: oklch(97% 0.02 80 / 0.66);
+  }
+
+  .alo-faithful .alo-plan-card ul {
+    margin: 28px 0 26px;
+    display: grid;
+    gap: 13px;
+    color: oklch(16% 0.02 40 / 0.78);
+    font-size: 0.95rem;
+    font-weight: 750;
+  }
+
+  .alo-faithful .alo-plan-card li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+
+  .alo-faithful .alo-plan-card li::before {
+    content: "✓";
+    width: 22px;
+    height: 22px;
+    border-radius: 999px;
+    display: grid;
+    place-items: center;
+    background: oklch(68% 0.24 42 / 0.14);
+    color: var(--alo-flame);
+    font-size: 0.72rem;
+    font-weight: 900;
+  }
+
+  .alo-faithful .alo-plan-card-featured ul {
+    color: oklch(97% 0.02 80 / 0.8);
+  }
+
+  .alo-faithful .alo-plan-card-featured li::before {
+    background: oklch(97% 0.02 80 / 0.14);
+    color: var(--alo-ember);
+  }
+
+  .alo-faithful .alo-plan-card .alo-pill {
+    width: 100%;
+    margin-top: auto;
+  }
+
+  .alo-faithful .alo-pricing .alo-pill-outline {
+    color: var(--alo-ink);
+    border-color: oklch(16% 0.02 40 / 0.14);
+    background: white;
+  }
+
+  .alo-faithful .alo-pricing .alo-pill-outline:hover {
+    background: oklch(94% 0.04 80);
+  }
+
+  @media (max-width: 980px) {
+    .alo-faithful .alo-plan-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .alo-faithful .alo-plan-card,
+    .alo-faithful .alo-plan-card-featured {
+      min-height: auto;
+      transform: none;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .alo-faithful .alo-pricing {
+      padding-top: 76px;
+    }
+
+    .alo-faithful .alo-plan-card {
+      padding: 24px;
+      border-radius: 26px;
+    }
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-stats {
+    width: 100%;
+    margin: 0;
+    display: block;
+    border-top: 1px solid oklch(90% 0.02 70 / 0.58);
+    border-bottom: 1px solid oklch(90% 0.02 70 / 0.58);
+    background: oklch(98% 0.012 82 / 0.74);
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .alo-faithful .alo-stats > div {
+    width: min(680px, 100%);
+    margin: 0 auto;
+    padding: 22px 24px 19px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(54px, 7vw, 88px);
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .alo-faithful .alo-stats article,
+  .alo-faithful .alo-stats div {
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    backdrop-filter: none;
+  }
+
+  .alo-faithful .alo-stats article {
+    min-width: 78px;
+    padding: 0;
+    text-align: left;
+  }
+
+  .alo-faithful .alo-stats strong {
+    display: block;
+    color: var(--alo-ink);
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-size: 1.72rem;
+    font-weight: 900;
+    line-height: 0.82;
+    letter-spacing: -0.03em;
+  }
+
+  .alo-faithful .alo-stats span {
+    display: block;
+    margin-top: 7px;
+    color: oklch(42% 0.02 45 / 0.78);
+    font-size: 0.47rem;
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: 0.095em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 680px) {
+    .alo-faithful .alo-stats > div {
+      width: min(360px, 100%);
+      display: grid;
+      grid-template-columns: repeat(2, max-content);
+      gap: 20px 42px;
+    }
+  }
+
+  .alo-faithful .alo-name-marquee {
+    width: 100%;
+    overflow: hidden;
+    padding: 28px 0;
+    mask-image: linear-gradient(to right, transparent, black 8%, black 92%, transparent);
+  }
+
+  .alo-faithful .alo-name-marquee > div {
+    display: flex;
+    width: max-content;
+    min-width: max-content;
+    align-items: center;
+    gap: 52px;
+    padding-inline: 24px;
+    white-space: nowrap;
+    will-change: transform;
+    animation: alo-name-loop 90s linear infinite;
+  }
+
+  .alo-faithful .alo-name-marquee span {
+    flex: 0 0 auto;
+    color: oklch(16% 0.02 40 / 0.35);
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-size: 1.08rem;
+    font-weight: 900;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  @keyframes alo-name-loop {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-cta {
+    width: min(1152px, calc(100% - 48px));
+    min-height: 442px;
+    margin: 96px auto 80px;
+    padding: 70px 64px;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    align-items: stretch;
+    border-radius: 40px;
+    overflow: hidden;
+    color: var(--alo-cream);
+    background:
+      radial-gradient(70% 100% at 96% 0%, oklch(58% 0.24 38 / 0.92), transparent 62%),
+      linear-gradient(100deg, oklch(12% 0.03 35) 0%, oklch(12% 0.03 35) 42%, oklch(25% 0.09 34) 72%, oklch(38% 0.18 34) 100%);
+    box-shadow: 0 30px 90px -48px oklch(16% 0.02 40 / 0.65);
+  }
+
+  .alo-faithful .alo-cta::before {
+    display: none;
+  }
+
+  .alo-faithful .alo-cta > div {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 720px) minmax(280px, 1fr);
+    grid-template-rows: auto 1fr;
+    align-items: end;
+    column-gap: 48px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .alo-faithful .alo-cta .alo-kicker,
+  .alo-faithful .alo-cta h2,
+  .alo-faithful .alo-cta p {
+    grid-column: 1;
+  }
+
+  .alo-faithful .alo-cta .alo-kicker {
+    align-self: start;
+    color: var(--alo-cream);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+  }
+
+  .alo-faithful .alo-cta h2 {
+    margin-top: 18px;
+    color: var(--alo-cream);
+    font-size: clamp(3.3rem, 5.4vw, 5.9rem);
+    line-height: 0.96;
+    font-weight: 900;
+    max-width: 760px;
+  }
+
+  .alo-faithful .alo-cta h2 span {
+    color: var(--alo-flame);
+    font-style: italic;
+  }
+
+  .alo-faithful .alo-cta p {
+    max-width: 600px;
+    margin-top: 22px;
+    color: oklch(97% 0.02 80 / 0.72);
+    font-size: 1.18rem;
+    line-height: 1.5;
+  }
+
+  .alo-faithful .alo-cta-actions {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    align-self: end;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0 32px 0 0;
+    flex-wrap: nowrap;
+  }
+
+  .alo-faithful .alo-cta-actions .alo-pill {
+    min-height: 48px;
+    padding: 0 26px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .alo-faithful .alo-cta-actions .alo-pill-primary {
+    background: linear-gradient(135deg, oklch(70% 0.24 48), oklch(62% 0.28 32));
+    color: white;
+    box-shadow: none;
+  }
+
+  .alo-faithful .alo-cta-actions .alo-pill-outline {
+    color: var(--alo-cream);
+    border: 1px solid oklch(97% 0.02 80 / 0.24);
+    background: transparent;
+  }
+
+  @media (max-width: 980px) {
+    .alo-faithful .alo-cta {
+      min-height: 0;
+      padding: 44px 32px;
+    }
+
+    .alo-faithful .alo-cta > div {
+      display: block;
+    }
+
+    .alo-faithful .alo-cta-actions {
+      justify-content: flex-start;
+      margin: 30px 0 0;
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .alo-faithful .alo-cta {
+      width: calc(100% - 32px);
+      border-radius: 28px;
+      padding: 34px 24px;
+    }
+
+    .alo-faithful .alo-cta h2 {
+      font-size: clamp(2.55rem, 13vw, 3.6rem);
+    }
+  }
+}
+
+@layer components {
+  .alo-faithful {
+    --alo-cream: oklch(97% 0.02 80);
+    --alo-ink: oklch(16% 0.02 40);
+    --alo-flame: oklch(68% 0.24 42);
+    --alo-ember: oklch(78% 0.2 62);
+    --alo-lime: oklch(88% 0.19 128);
+    --alo-muted: oklch(42% 0.02 45);
+    --alo-border: oklch(90% 0.02 70);
+    --alo-card: oklch(100% 0 0);
+    --alo-secondary: oklch(94% 0.04 80);
+    --alo-gradient-hero:
+      radial-gradient(60% 50% at 85% 0%, oklch(82% 0.2 62 / 0.55), transparent 60%),
+      radial-gradient(50% 40% at 0% 20%, oklch(68% 0.24 42 / 0.35), transparent 60%);
+    --alo-gradient-flame: linear-gradient(135deg, oklch(72% 0.24 55), oklch(62% 0.28 32));
+    --alo-shadow-soft: 0 1px 2px oklch(20% 0.05 40 / 0.06), 0 20px 50px -18px oklch(30% 0.18 45 / 0.22);
+    --alo-shadow-glow: 0 20px 60px -14px oklch(62% 0.3 45 / 0.65);
+    --alo-shadow-ink: 0 30px 80px -20px oklch(16% 0.02 40 / 0.35);
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    background: var(--alo-cream);
+    color: var(--alo-ink);
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .alo-faithful h1,
+  .alo-faithful h2,
+  .alo-faithful h3 {
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    letter-spacing: -0.03em;
+  }
+
+  .alo-gradient-bg,
+  .alo-dot-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .alo-gradient-bg {
+    background: var(--alo-gradient-hero);
+  }
+
+  .alo-dot-bg {
+    opacity: 0.6;
+    background-image: radial-gradient(oklch(16% 0.02 40 / 0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(to bottom, black, transparent 64%);
+  }
+
+  .alo-faithful > header,
+  .alo-faithful > section,
+  .alo-faithful > footer {
+    position: relative;
+    z-index: 1;
+  }
+
+  .alo-faithful .alo-header {
+    width: min(72rem, 100%);
+    margin: 0 auto;
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .alo-faithful .alo-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--alo-ink);
+    font-size: 1.25rem;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .alo-faithful .alo-brand > span:last-child {
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+  }
+
+  .alo-faithful .alo-brand > span:last-child span {
+    color: var(--alo-flame);
+  }
+
+  .alo-faithful .alo-brand-mark,
+  .alo-faithful .alo-chat-avatar,
+  .alo-faithful .alo-location-icon,
+  .alo-faithful .alo-step-card > div {
+    display: grid;
+    place-items: center;
+    background: var(--alo-gradient-flame);
+    color: white;
+    font-weight: 900;
+    box-shadow: var(--alo-shadow-glow);
+  }
+
+  .alo-faithful .alo-brand-mark {
+    width: 40px;
+    height: 40px;
+    border-radius: 16px;
+  }
+
+  .alo-faithful .alo-nav {
+    display: flex;
+    gap: 32px;
+    color: var(--alo-muted);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .alo-faithful .alo-nav a,
+  .alo-faithful .alo-link-button,
+  .alo-faithful .alo-inline-action {
+    transition: color 160ms ease, transform 160ms ease;
+  }
+
+  .alo-faithful .alo-nav a:hover,
+  .alo-faithful .alo-link-button:hover,
+  .alo-faithful .alo-inline-action:hover {
+    color: var(--alo-ink);
+  }
+
+  .alo-faithful .alo-header-actions,
+  .alo-faithful .alo-cta-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .alo-faithful .alo-link-button {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    padding: 0;
+    color: oklch(16% 0.02 40 / 0.7);
+    font-size: 0.875rem;
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+  }
+
+  .alo-faithful .alo-pill {
+    min-height: 40px;
+    border-radius: 999px;
+    padding: 0 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    font-weight: 700;
+    transition: transform 160ms ease, background 160ms ease;
+  }
+
+  .alo-faithful .alo-pill:hover {
+    transform: scale(1.03);
+  }
+
+  .alo-faithful .alo-pill-dark {
+    background: var(--alo-ink);
+    color: var(--alo-cream);
+    box-shadow: none;
+  }
+
+  .alo-faithful .alo-pill-primary {
+    min-height: 48px;
+    padding: 0 24px;
+    background: var(--alo-gradient-flame);
+    color: white;
+    box-shadow: var(--alo-shadow-glow);
+  }
+
+  .alo-faithful .alo-pill-outline {
+    min-height: 48px;
+    padding: 0 24px;
+    color: var(--alo-cream);
+    border: 1px solid oklch(97% 0.02 80 / 0.25);
+  }
+
+  .alo-faithful .alo-pill-outline:hover {
+    background: oklch(97% 0.02 80 / 0.1);
+  }
+
+  .alo-faithful .alo-hero {
+    width: min(72rem, 100%);
+    min-height: auto;
+    margin: 0 auto;
+    padding: 24px 24px 96px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    align-items: center;
+    gap: 48px;
+  }
+
+  .alo-faithful .alo-hero-copy {
+    animation: alo-rise 0.7s ease-out both;
+  }
+
+  .alo-faithful .alo-status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    border: 1px solid var(--alo-border);
+    background: oklch(100% 0 0 / 0.7);
+    color: var(--alo-muted);
+    padding: 6px 12px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    box-shadow: none;
+    backdrop-filter: blur(12px);
+  }
+
+  .alo-faithful .alo-live-dot,
+  .alo-faithful .alo-benefits i,
+  .alo-faithful .alo-chat-head i {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--alo-lime);
+    display: inline-block;
+  }
+
+  .alo-faithful .alo-live-dot {
+    box-shadow: 0 0 0 6px oklch(88% 0.19 128 / 0.16);
+    animation: alo-pulse-dot 1.6s ease-in-out infinite;
+  }
+
+  .alo-faithful .alo-hero h1 {
+    margin-top: 24px;
+    max-width: 900px;
+    font-size: clamp(3rem, 7vw, 5.25rem);
+    line-height: 0.92;
+    font-weight: 900;
+  }
+
+  .alo-faithful .alo-emphasis {
+    position: relative;
+    display: inline-block;
+    color: var(--alo-flame);
+    font-style: italic;
+  }
+
+  .alo-faithful .alo-emphasis svg {
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    width: 100%;
+    height: 12px;
+    color: oklch(68% 0.24 42 / 0.4);
+  }
+
+  .alo-faithful .alo-emphasis path {
+    stroke: currentColor;
+    stroke-width: 4;
+    stroke-linecap: round;
+    fill: none;
+  }
+
+  .alo-faithful .alo-hero p {
+    margin-top: 24px;
+    max-width: 36rem;
+    color: var(--alo-muted);
+    font-size: clamp(1.125rem, 2vw, 1.25rem);
+    line-height: 1.6;
+  }
+
+  .alo-faithful .alo-hero p strong {
+    color: var(--alo-ink);
+  }
+
+  .alo-search-form {
+    width: min(100%, 42rem);
+    margin-top: 40px;
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    border-radius: 24px;
+    border: 1px solid oklch(90% 0.02 70 / 0.7);
+    background: oklch(100% 0 0 / 0.95);
+    box-shadow: var(--alo-shadow-soft);
+    backdrop-filter: blur(12px);
+  }
+
+  .alo-search-form > div {
+    min-width: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-left: 16px;
+  }
+
+  .alo-location-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
+    flex: 0 0 auto;
+  }
+
+  .alo-location-icon svg {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .alo-search-form input {
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    background: transparent;
+    color: var(--alo-ink);
+    outline: 0;
+    padding: 12px 0;
+    font-size: 1rem;
+  }
+
+  .alo-search-form input::placeholder {
+    color: var(--alo-muted);
+  }
+
+  .alo-search-form button {
+    min-height: 52px;
+    border-radius: 16px;
+    background: var(--alo-ink);
+    color: var(--alo-cream);
+    padding: 0 24px;
+    font-size: 0.875rem;
+    font-weight: 800;
+    white-space: nowrap;
+    transition: transform 160ms ease;
+  }
+
+  .alo-search-form button:hover {
+    transform: scale(1.02);
+  }
+
+  .alo-benefits {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 20px;
+    color: var(--alo-muted);
+    font-size: 0.75rem;
+  }
+
+  .alo-benefits span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .alo-benefits i,
+  .alo-chat-head i {
+    width: 6px;
+    height: 6px;
+  }
+
+  .alo-phone-wrap {
+    position: relative;
+    width: 100%;
+    max-width: 24rem;
+    margin: 0 auto;
+  }
+
+  .alo-phone-shell {
+    position: relative;
+    border-radius: 40px;
+    border: 1px solid oklch(16% 0.02 40 / 0.1);
+    background: var(--alo-ink);
+    padding: 12px;
+    box-shadow: var(--alo-shadow-ink);
+    animation: alo-float-slow 7s ease-in-out infinite;
+  }
+
+  .alo-phone-screen {
+    position: relative;
+    overflow: hidden;
+    border-radius: 32px;
+    background: var(--alo-card);
+    color: var(--alo-ink);
+  }
+
+  .alo-notch {
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    width: 96px;
+    height: 20px;
+    border-radius: 999px;
+    background: var(--alo-ink);
+    transform: translateX(-50%);
+  }
+
+  .alo-faithful .alo-phone-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px 0;
+    color: var(--alo-muted);
+    font-size: 0.625rem;
+    font-weight: 800;
+  }
+
+  .alo-faithful .alo-chat-head {
+    margin-top: 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--alo-border);
+    padding: 0 20px 16px;
+    background: transparent;
+  }
+
+  .alo-chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 16px;
+    flex: 0 0 auto;
+  }
+
+  .alo-chat-head strong {
+    display: block;
+    color: var(--alo-ink);
+    font-size: 0.875rem;
+    font-weight: 800;
+  }
+
+  .alo-chat-head span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--alo-muted);
+    font-size: 0.6875rem;
+  }
+
+  .alo-faithful .alo-chat {
+    margin: 0;
+    display: grid;
+    gap: 10px;
+    padding: 20px;
+    font-size: 0.875rem;
+  }
+
+  .alo-faithful .alo-bubble {
+    max-width: 85%;
+    border-radius: 16px;
+    padding: 10px 16px;
+    line-height: 1.45;
+  }
+
+  .alo-faithful .alo-bubble-user {
+    max-width: 80%;
+    margin-left: auto;
+    border-top-right-radius: 4px;
+    background: var(--alo-ink);
+    color: var(--alo-cream);
+  }
+
+  .alo-faithful .alo-bubble-user.alo-short {
+    max-width: 70%;
+  }
+
+  .alo-faithful .alo-bubble-bot {
+    border-top-left-radius: 4px;
+    background: var(--alo-secondary);
+    color: var(--alo-ink);
+  }
+
+  .alo-typing {
+    max-width: 60%;
+    display: inline-flex;
+    gap: 4px;
+  }
+
+  .alo-typing span {
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--alo-muted);
+    animation: alo-blink 1.2s infinite;
+  }
+
+  .alo-typing span:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .alo-typing span:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  .alo-faithful .alo-order-card {
+    margin: 0 20px 20px;
+    max-width: none;
+    border-radius: 16px;
+    border: 1px solid var(--alo-border);
+    background: var(--alo-cream);
+    color: var(--alo-ink);
+    padding: 16px;
+    box-shadow: none;
+  }
+
+  .alo-order-card > div,
+  .alo-order-card p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .alo-order-card span,
+  .alo-order-card strong {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--alo-muted);
+  }
+
+  .alo-order-card strong {
+    color: var(--alo-flame);
+  }
+
+  .alo-order-card p {
+    margin-top: 8px;
+    font-size: 0.875rem;
+  }
+
+  .alo-order-card b {
+    font-weight: 900;
+  }
+
+  .alo-order-card i {
+    display: block;
+    width: 66%;
+    height: 4px;
+    margin-top: 12px;
+    border-radius: 999px;
+    background: var(--alo-gradient-flame);
+  }
+
+  .alo-phone-float {
+    position: absolute;
+    z-index: 2;
+    border-radius: 16px;
+    border: 1px solid var(--alo-border);
+    background: var(--alo-card);
+    color: var(--alo-ink);
+    padding: 8px 12px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    box-shadow: var(--alo-shadow-soft);
+  }
+
+  .alo-phone-float-left {
+    left: -24px;
+    top: 64px;
+    transform: rotate(-8deg);
+  }
+
+  .alo-phone-float-right {
+    right: -16px;
+    bottom: 96px;
+    transform: rotate(6deg);
+  }
+
+  .alo-faithful .alo-stats {
+    width: 100%;
+    margin: 0;
+    border-block: 1px solid oklch(90% 0.02 70 / 0.7);
+    background: oklch(100% 0 0 / 0.6);
+    backdrop-filter: blur(12px);
+  }
+
+  .alo-stats > div {
+    width: min(72rem, 100%);
+    margin: 0 auto;
+    padding: 32px 24px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+  }
+
+  .alo-stats article {
+    text-align: left;
+  }
+
+  .alo-stats strong {
+    display: block;
+    color: var(--alo-ink);
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-size: clamp(1.875rem, 4vw, 2.25rem);
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .alo-stats span {
+    display: block;
+    margin-top: 6px;
+    color: var(--alo-muted);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .alo-name-marquee {
+    padding: 32px 0;
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  }
+
+  .alo-name-marquee > div {
+    display: flex;
+    width: max-content;
+    align-items: center;
+    gap: 48px;
+    padding-inline: 24px;
+    animation: alo-marquee-slow 70s linear infinite;
+  }
+
+  .alo-name-marquee span {
+    white-space: nowrap;
+    color: oklch(16% 0.02 40 / 0.4);
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+  }
+
+  .alo-faithful .alo-section {
+    width: min(72rem, 100%);
+    margin: 0 auto;
+    padding: 64px 24px;
+  }
+
+  .alo-faithful .alo-section-head {
+    margin-bottom: 32px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .alo-faithful .alo-kicker {
+    color: var(--alo-flame);
+    font-size: 0.75rem;
+    font-weight: 900;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .alo-faithful .alo-section-head h2,
+  .alo-faithful .alo-brain-copy h2,
+  .alo-faithful .alo-how h2 {
+    margin-top: 8px;
+    font-size: clamp(2.25rem, 5vw, 3rem);
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  .alo-faithful .alo-section-head h2 span,
+  .alo-faithful .alo-brain-copy h2 span,
+  .alo-faithful .alo-how h2 span,
+  .alo-faithful .alo-cta h2 span {
+    color: var(--alo-flame);
+    font-style: italic;
+  }
+
+  .alo-faithful .alo-inline-action {
+    color: var(--alo-muted);
+    font-size: 0.875rem;
+    font-weight: 700;
+  }
+
+  .alo-restaurants {
+    overflow: visible;
+  }
+
+  .alo-card-marquee {
+    width: 100vw;
+    margin-left: calc((min(72rem, 100vw) - 100vw) / 2);
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent, black 4%, black 96%, transparent);
+  }
+
+  .alo-card-marquee > div {
+    display: flex;
+    width: max-content;
+    gap: 18px;
+    padding-inline: 24px;
+    animation: alo-marquee 45s linear infinite;
+  }
+
+  .alo-card-marquee:hover > div {
+    animation-play-state: paused;
+  }
+
+  .alo-faithful .alo-restaurant-card {
+    width: 216px;
+    min-height: 0;
+    flex: 0 0 auto;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid oklch(90% 0.02 70 / 0.7);
+    background: var(--alo-card);
+    padding: 0;
+    box-shadow: 0 16px 36px -28px oklch(16% 0.02 40 / 0.35);
+    transition: transform 250ms ease, box-shadow 250ms ease;
+  }
+
+  .alo-restaurant-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 44px -28px oklch(16% 0.02 40 / 0.45);
+  }
+
+  .alo-restaurant-art {
+    position: relative;
+    display: grid;
+    height: 120px;
+    place-items: center;
+  }
+
+  .alo-restaurant-art > span {
+    font-size: 3.25rem;
+    transform: translateY(2px);
+    filter: drop-shadow(0 10px 7px rgb(0 0 0 / 0.2));
+  }
+
+  .alo-restaurant-art b,
+  .alo-restaurant-art em {
+    position: absolute;
+    top: 10px;
+    border-radius: 999px;
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.56rem;
+    font-style: normal;
+    font-weight: 900;
+    line-height: 1;
+  }
+
+  .alo-restaurant-art b {
+    left: 10px;
+    background: oklch(100% 0 0 / 0.95);
+    color: var(--alo-ink);
+    padding: 5px 9px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .alo-restaurant-art em {
+    right: 10px;
+    background: oklch(16% 0.02 40 / 0.9);
+    color: var(--alo-cream);
+    padding: 5px 8px;
+  }
+
+  .alo-tone-amber { background: linear-gradient(135deg, oklch(82.8% 0.189 84.429), oklch(70.5% 0.213 47.604)); }
+  .alo-tone-orange { background: linear-gradient(135deg, oklch(75% 0.183 55.934), oklch(63.7% 0.237 25.331)); }
+  .alo-tone-rose { background: linear-gradient(135deg, oklch(71.2% 0.194 13.428), oklch(65.6% 0.241 354.308)); }
+  .alo-tone-red { background: linear-gradient(135deg, oklch(70.4% 0.191 22.216), oklch(70.5% 0.213 47.604)); }
+  .alo-tone-green { background: linear-gradient(135deg, oklch(84.1% 0.238 128.85), oklch(72.3% 0.219 149.579)); }
+  .alo-tone-yellow { background: linear-gradient(135deg, oklch(82.8% 0.189 84.429), oklch(79.5% 0.184 86.047)); }
+  .alo-tone-pink { background: linear-gradient(135deg, oklch(71.8% 0.202 349.761), oklch(64.5% 0.246 16.439)); }
+  .alo-tone-taco { background: linear-gradient(135deg, oklch(75% 0.183 55.934), oklch(76.9% 0.188 70.08)); }
+  .alo-tone-pasta { background: linear-gradient(135deg, oklch(70.4% 0.191 22.216), oklch(70.5% 0.213 47.604)); }
+  .alo-tone-purple { background: linear-gradient(135deg, oklch(71.4% 0.203 305.504), oklch(66.7% 0.295 322.15)); }
+
+  .alo-restaurant-body {
+    min-height: 72px;
+    padding: 12px 13px 11px;
+    background: var(--alo-card);
+  }
+
+  .alo-faithful .alo-restaurant-body h3 {
+    margin: 0;
+    color: var(--alo-ink);
+    font-size: 1rem;
+    font-weight: 900;
+    line-height: 1.15;
+  }
+
+  .alo-faithful .alo-restaurant-body p {
+    margin-top: 1px;
+    color: var(--alo-muted);
+    font-size: 0.68rem;
+    line-height: 1.25;
+    font-weight: 500;
+  }
+
+  .alo-faithful .alo-restaurant-body footer {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: var(--alo-muted);
+    font-size: 0.65rem;
+    line-height: 1;
+  }
+
+  .alo-faithful .alo-restaurant-body a {
+    color: var(--alo-flame);
+    font-weight: 800;
+    white-space: nowrap;
+  }
+
+  .alo-faithful .alo-brain-section {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    align-items: start;
+    gap: 56px;
+    padding-top: 96px;
+    padding-bottom: 96px;
+  }
+
+  .alo-faithful .alo-brain-copy {
+    position: sticky;
+    top: 32px;
+  }
+
+  .alo-faithful .alo-brain-copy h2 {
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+  }
+
+  .alo-faithful .alo-brain-copy p {
+    max-width: 28rem;
+    margin-top: 20px;
+    color: var(--alo-muted);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .alo-faithful .alo-brain-badge {
+    margin-top: 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    border-radius: 16px;
+    border: 1px solid var(--alo-border);
+    background: var(--alo-card);
+    padding: 16px;
+  }
+
+  .alo-brain-badge strong {
+    display: block;
+    font-size: 0.875rem;
+  }
+
+  .alo-brain-badge span {
+    display: block;
+    color: var(--alo-muted);
+    font-size: 0.75rem;
+  }
+
+  .alo-faithful .alo-feature-list {
+    display: grid;
+    gap: 16px;
+  }
+
+  .alo-faithful .alo-feature-card {
+    display: flex;
+    gap: 20px;
+    border-radius: 24px;
+    border: 1px solid var(--alo-border);
+    background: var(--alo-card);
+    padding: 24px;
+    transition: border-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .alo-feature-card:hover {
+    border-color: var(--alo-flame);
+    box-shadow: var(--alo-shadow-soft);
+  }
+
+  .alo-feature-emoji {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 auto;
+    display: grid;
+    place-items: center;
+    border-radius: 16px;
+    background: var(--alo-secondary);
+    font-size: 1.5rem;
+  }
+
+  .alo-feature-card header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .alo-feature-card header b {
+    color: var(--alo-flame);
+    font-size: 0.75rem;
+    font-weight: 900;
+  }
+
+  .alo-feature-card header i {
+    height: 1px;
+    flex: 1;
+    background: var(--alo-border);
+  }
+
+  .alo-feature-card h3 {
+    margin-top: 8px;
+    font-size: 1.25rem;
+    font-weight: 800;
+  }
+
+  .alo-feature-card p {
+    margin-top: 4px;
+    color: var(--alo-muted);
+    font-size: 0.875rem;
+    line-height: 1.55;
+  }
+
+  .alo-faithful .alo-how {
+    text-align: center;
+    padding-bottom: 96px;
+  }
+
+  .alo-faithful .alo-step-grid {
+    margin-top: 48px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: left;
+  }
+
+  .alo-faithful .alo-step-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    border: 1px solid var(--alo-border);
+    background: var(--alo-card);
+    padding: 32px;
+  }
+
+  .alo-faithful .alo-step-card > div {
+    width: 48px;
+    height: 48px;
+    border-radius: 16px;
+    font-size: 1.125rem;
+  }
+
+  .alo-step-card h3 {
+    margin-top: 24px;
+    font-size: 1.5rem;
+    font-weight: 900;
+  }
+
+  .alo-step-card p {
+    margin-top: 8px;
+    color: var(--alo-muted);
+    font-size: 0.875rem;
+  }
+
+  .alo-faithful .alo-cta {
+    width: min(72rem, calc(100% - 48px));
+    margin: 0 auto 80px;
+    border-radius: 40px;
+    background: var(--alo-ink);
+    color: var(--alo-cream);
+    padding: clamp(40px, 7vw, 64px);
+    overflow: hidden;
+  }
+
+  .alo-faithful .alo-cta::before {
+    content: "";
+    position: absolute;
+    right: -80px;
+    top: -80px;
+    width: 384px;
+    height: 384px;
+    border-radius: 999px;
+    background: var(--alo-gradient-flame);
+    opacity: 0.6;
+    filter: blur(64px);
+  }
+
+  .alo-faithful .alo-cta > div {
+    position: relative;
+    z-index: 1;
+  }
+
+  .alo-faithful .alo-cta h2 {
+    margin-top: 12px;
+    font-size: clamp(2.5rem, 6vw, 3.75rem);
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  .alo-faithful .alo-cta p {
+    max-width: 34rem;
+    margin-top: 20px;
+    color: oklch(97% 0.02 80 / 0.7);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .alo-faithful .alo-cta-actions {
+    margin-top: 32px;
+    flex-wrap: wrap;
+  }
+
+  .alo-faithful .alo-footer {
+    width: min(72rem, 100%);
+    margin: 0 auto;
+    border-top: 1px solid var(--alo-border);
+    padding: 32px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: var(--alo-muted);
+    font-size: 0.875rem;
+  }
+
+  .alo-faithful .alo-footer .alo-brand {
+    font-size: 1rem;
+  }
+
+  .alo-faithful .alo-footer .alo-brand-mark {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+  }
+
+  @keyframes alo-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes alo-marquee-slow {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes alo-pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  @keyframes alo-float-slow {
+    0%, 100% { transform: translateY(0) rotate(0); }
+    50% { transform: translateY(-14px) rotate(2deg); }
+  }
+
+  @keyframes alo-blink {
+    0%, 60% { opacity: 1; }
+    61%, 100% { opacity: 0.2; }
+  }
+
+  @keyframes alo-rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 900px) {
+    .alo-faithful .alo-hero,
+    .alo-faithful .alo-brain-section {
+      grid-template-columns: 1fr;
+    }
+
+    .alo-faithful .alo-brain-copy {
+      position: static;
+    }
+
+    .alo-phone-wrap {
+      max-width: 26rem;
+    }
+
+    .alo-stats > div,
+    .alo-faithful .alo-step-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 680px) {
+    .alo-faithful .alo-header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .alo-faithful .alo-nav {
+      display: none;
+    }
+
+    .alo-faithful .alo-header-actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .alo-faithful .alo-hero {
+      padding-bottom: 56px;
+      gap: 36px;
+    }
+
+    .alo-faithful .alo-hero h1 {
+      font-size: clamp(3rem, 16vw, 4.35rem);
+    }
+
+    .alo-search-form {
+      align-items: stretch;
+      flex-direction: column;
+    }
+
+    .alo-search-form button {
+      width: 100%;
+    }
+
+    .alo-phone-float {
+      display: none;
+    }
+
+    .alo-stats > div,
+    .alo-faithful .alo-step-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .alo-stats article {
+      text-align: center;
+    }
+
+    .alo-faithful .alo-section-head,
+    .alo-faithful .alo-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .alo-faithful .alo-feature-card {
+      flex-direction: column;
+    }
+
+    .alo-faithful .alo-cta {
+      width: calc(100% - 32px);
+      border-radius: 28px;
+      margin-bottom: 48px;
+    }
+  }
+}
+
+:root {
+  --primary: oklch(0.55 0.25 290);
+  --primary-foreground: oklch(0.98 0.01 290);
+  --sidebar-primary: oklch(0.55 0.25 290);
+  --sidebar-primary-foreground: oklch(0.98 0.01 290);
+  --chart-1: oklch(0.75 0.15 290);
+  --chart-2: oklch(0.65 0.20 290);
+  --chart-3: oklch(0.55 0.25 290);
+  --chart-4: oklch(0.45 0.25 290);
+  --chart-5: oklch(0.35 0.25 290);
+  --radius: 0.65rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.235 0.015 65);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.235 0.015 65);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.235 0.015 65);
+  --secondary: oklch(0.98 0.001 286.375);
+  --secondary-foreground: oklch(0.4 0.015 65);
+  --muted: oklch(0.967 0.001 286.375);
+  --muted-foreground: oklch(0.552 0.016 285.938);
+  --accent: oklch(0.967 0.001 286.375);
+  --accent-foreground: oklch(0.141 0.005 285.823);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(0.92 0.004 286.32);
+  --input: oklch(0.92 0.004 286.32);
+  --ring: oklch(0.623 0.214 259.815);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.235 0.015 65);
+  --sidebar-accent: oklch(0.967 0.001 286.375);
+  --sidebar-accent-foreground: oklch(0.141 0.005 285.823);
+  --sidebar-border: oklch(0.92 0.004 286.32);
+  --sidebar-ring: oklch(0.623 0.214 259.815);
+}
+
+.dark {
+  --primary: oklch(0.60 0.25 290);
+  --primary-foreground: oklch(0.98 0.01 290);
+  --sidebar-primary: oklch(0.60 0.25 290);
+  --sidebar-primary-foreground: oklch(0.98 0.01 290);
+  --background: oklch(0.141 0.005 285.823);
+  --foreground: oklch(0.85 0.005 65);
+  --card: oklch(0.21 0.006 285.885);
+  --card-foreground: oklch(0.85 0.005 65);
+  --popover: oklch(0.21 0.006 285.885);
+  --popover-foreground: oklch(0.85 0.005 65);
+  --secondary: oklch(0.24 0.006 286.033);
+  --secondary-foreground: oklch(0.7 0.005 65);
+  --muted: oklch(0.274 0.006 286.033);
+  --muted-foreground: oklch(0.705 0.015 286.067);
+  --accent: oklch(0.274 0.006 286.033);
+  --accent-foreground:  oklch(0.92 0.005 65);
+  --destructive: oklch(0.704 0.191 22.216);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.488 0.243 264.376);
+  --chart-1: oklch(0.75 0.15 290);
+  --chart-2: oklch(0.65 0.20 290);
+  --chart-3: oklch(0.55 0.25 290);
+  --chart-4: oklch(0.45 0.25 290);
+  --chart-5: oklch(0.35 0.25 290);
+  --sidebar: oklch(0.21 0.006 285.885);
+  --sidebar-foreground: oklch(0.85 0.005 65);
+  --sidebar-accent: oklch(0.274 0.006 286.033);
+  --sidebar-accent-foreground:  oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.488 0.243 264.376);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  button:not(:disabled),
+  [role="button"]:not([aria-disabled="true"]),
+  [type="button"]:not(:disabled),
+  [type="submit"]:not(:disabled),
+  [type="reset"]:not(:disabled),
+  a[href],
+  select:not(:disabled),
+  input[type="checkbox"]:not(:disabled),
+  input[type="radio"]:not(:disabled) {
+    @apply cursor-pointer;
+  }
+}
+
+@layer components {
+  /**
+   * Custom container utility that centers content and adds responsive padding.
+   *
+   * This overrides Tailwind's default container behavior to:
+   * - Auto-center content (mx-auto)
+   * - Add responsive horizontal padding
+   * - Set max-width for large screens
+   *
+   * Usage: <div className="container">...</div>
+   *
+   * For custom widths, use max-w-* utilities directly:
+   * <div className="max-w-6xl mx-auto px-4">...</div>
+   */
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem; /* 16px - mobile padding */
+    padding-right: 1rem;
+  }
+
+  .flex {
+    min-height: 0;
+    min-width: 0;
+  }
+
+  @media (min-width: 640px) {
+    .container {
+      padding-left: 1.5rem; /* 24px - tablet padding */
+      padding-right: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .container {
+      padding-left: 2rem; /* 32px - desktop padding */
+      padding-right: 2rem;
+      max-width: 1280px; /* Standard content width */
+    }
+  }
+
+  /* Hide scrollbar but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+
+  .alo-page {
+    --alo-cream: oklch(97% 0.02 80);
+    --alo-ink: oklch(16% 0.02 40);
+    --alo-flame: oklch(68% 0.24 42);
+    --alo-ember: oklch(78% 0.2 62);
+    --alo-lime: oklch(88% 0.19 128);
+    --alo-muted: oklch(42% 0.02 45);
+    --alo-border: oklch(90% 0.02 70);
+    --alo-card: oklch(100% 0 0);
+    --alo-shadow-soft: 0 1px 2px oklch(20% 0.05 40 / 0.06), 0 20px 50px -18px oklch(30% 0.18 45 / 0.22);
+    --alo-shadow-glow: 0 20px 60px -14px oklch(62% 0.3 45 / 0.65);
+    --alo-shadow-ink: 0 30px 80px -20px oklch(16% 0.02 40 / 0.35);
+    min-height: 100vh;
+    overflow: hidden;
+    background:
+      radial-gradient(60% 50% at 85% 0%, oklch(82% 0.2 62 / 0.55), transparent 60%),
+      radial-gradient(50% 40% at 0% 20%, oklch(68% 0.24 42 / 0.35), transparent 60%),
+      var(--alo-cream);
+    color: var(--alo-ink);
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .alo-page h1,
+  .alo-page h2,
+  .alo-page h3 {
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    letter-spacing: -0.03em;
+  }
+
+  .alo-header {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 24px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    position: relative;
+    z-index: 5;
+  }
+
+  .alo-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 900;
+    color: var(--alo-ink);
+    letter-spacing: -0.04em;
+  }
+
+  .alo-brand-mark,
+  .alo-chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 16px;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(135deg, oklch(72% 0.24 55), oklch(62% 0.28 32));
+    color: oklch(99% 0.01 85);
+    font-weight: 900;
+    box-shadow: var(--alo-shadow-soft);
+  }
+
+  .alo-nav {
+    display: flex;
+    gap: 26px;
+    color: var(--alo-muted);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .alo-nav a:hover,
+  .alo-link-button:hover,
+  .alo-inline-action:hover,
+  .alo-open-site:hover {
+    color: var(--alo-flame);
+  }
+
+  .alo-header-actions,
+  .alo-hero-actions,
+  .alo-cta-actions,
+  .alo-phone-flags {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .alo-link-button,
+  .alo-inline-action,
+  .alo-open-site {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 800;
+    color: var(--alo-ink);
+    transition: color 150ms ease;
+  }
+
+  .alo-pill {
+    min-height: 44px;
+    border-radius: 999px;
+    padding: 0 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 900;
+    transition: transform 150ms ease, box-shadow 150ms ease, filter 150ms ease;
+  }
+
+  .alo-pill:hover {
+    transform: translateY(-1px);
+  }
+
+  .alo-pill-dark {
+    background: var(--alo-ink);
+    color: var(--alo-cream);
+    box-shadow: var(--alo-shadow-ink);
+  }
+
+  .alo-pill-primary {
+    background: linear-gradient(135deg, oklch(72% 0.24 55), oklch(62% 0.28 32));
+    color: oklch(99% 0.01 85);
+    min-height: 54px;
+    padding-inline: 24px;
+    box-shadow: var(--alo-shadow-glow);
+  }
+
+  .alo-pill-light {
+    background: oklch(100% 0 0 / 0.66);
+    color: var(--alo-ink);
+    border: 1px solid oklch(100% 0 0 / 0.4);
+  }
+
+  .alo-hero {
+    width: min(1120px, calc(100% - 32px));
+    min-height: 620px;
+    margin: 22px auto 0;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(340px, 0.82fr);
+    align-items: center;
+    gap: 56px;
+    position: relative;
+  }
+
+  .alo-hero-bg {
+    position: absolute;
+    inset: -80px -24px auto;
+    height: 460px;
+    background-image: radial-gradient(oklch(16% 0.02 40 / 0.08) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: linear-gradient(to bottom, black, transparent);
+    pointer-events: none;
+  }
+
+  .alo-hero-copy {
+    position: relative;
+    z-index: 1;
+  }
+
+  .alo-status-pill,
+  .alo-active {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    background: oklch(100% 0 0 / 0.72);
+    border: 1px solid oklch(100% 0 0 / 0.52);
+    color: var(--alo-muted);
+    padding: 9px 13px;
+    font-size: 12px;
+    font-weight: 900;
+    box-shadow: var(--alo-shadow-soft);
+  }
+
+  .alo-live-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: var(--alo-lime);
+    box-shadow: 0 0 0 6px oklch(88% 0.19 128 / 0.2);
+    animation: alo-pulse-dot 1.6s ease-in-out infinite;
+  }
+
+  .alo-hero h1 {
+    margin-top: 24px;
+    font-size: clamp(3.7rem, 8vw, 7.3rem);
+    line-height: 0.9;
+    font-weight: 900;
+    max-width: 850px;
+  }
+
+  .alo-hero p {
+    margin-top: 24px;
+    max-width: 670px;
+    color: var(--alo-muted);
+    font-size: clamp(1rem, 1.6vw, 1.24rem);
+    line-height: 1.75;
+  }
+
+  .alo-hero p strong {
+    color: var(--alo-flame);
+  }
+
+  .alo-hero-actions {
+    margin-top: 34px;
+    color: var(--alo-muted);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .alo-phone-card {
+    position: relative;
+    z-index: 1;
+    border-radius: 42px;
+    background: var(--alo-ink);
+    color: var(--alo-cream);
+    padding: 22px;
+    box-shadow: var(--alo-shadow-ink);
+    transform: rotate(6deg);
+    animation: alo-float 7s ease-in-out infinite;
+  }
+
+  .alo-phone-card::before {
+    content: "";
+    position: absolute;
+    inset: -14px;
+    z-index: -1;
+    border-radius: 52px;
+    background: linear-gradient(135deg, oklch(78% 0.2 62 / 0.9), oklch(68% 0.24 42 / 0.4));
+    filter: blur(1px);
+  }
+
+  .alo-phone-top,
+  .alo-chat-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .alo-phone-top {
+    color: oklch(98% 0.01 85 / 0.7);
+    font-size: 12px;
+    font-weight: 800;
+    padding-inline: 8px;
+  }
+
+  .alo-phone-dots {
+    display: flex;
+    gap: 4px;
+  }
+
+  .alo-phone-dots span {
+    width: 5px;
+    height: 5px;
+    border-radius: 999px;
+    background: currentColor;
+  }
+
+  .alo-chat-head {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 26px;
+    background: oklch(100% 0 0 / 0.07);
+  }
+
+  .alo-chat-head span,
+  .alo-brain-badge span {
+    display: block;
+    margin-top: 2px;
+    color: oklch(98% 0.01 85 / 0.62);
+    font-size: 12px;
+  }
+
+  .alo-chat {
+    margin-top: 18px;
+    display: grid;
+    gap: 12px;
+  }
+
+  .alo-bubble,
+  .alo-order-card {
+    max-width: 82%;
+    padding: 13px 15px;
+    border-radius: 22px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .alo-bubble-user {
+    margin-left: auto;
+    background: var(--alo-flame);
+    color: white;
+    border-bottom-right-radius: 6px;
+  }
+
+  .alo-bubble-bot {
+    background: oklch(100% 0 0 / 0.1);
+    color: var(--alo-cream);
+    border-bottom-left-radius: 6px;
+  }
+
+  .alo-order-card {
+    background: var(--alo-cream);
+    color: var(--alo-ink);
+    box-shadow: var(--alo-shadow-soft);
+  }
+
+  .alo-order-card span {
+    display: block;
+    color: var(--alo-muted);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .alo-order-card strong,
+  .alo-order-card b {
+    display: block;
+  }
+
+  .alo-phone-flags {
+    margin-top: 18px;
+  }
+
+  .alo-phone-flags span {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border-radius: 999px;
+    background: oklch(100% 0 0 / 0.09);
+    padding: 8px 10px;
+    color: oklch(98% 0.01 85 / 0.78);
+    font-size: 12px;
+    font-weight: 800;
+  }
+
+  .alo-stats {
+    width: min(1120px, calc(100% - 32px));
+    margin: 30px auto 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .alo-stats div,
+  .alo-restaurant-card,
+  .alo-feature-card,
+  .alo-step-card {
+    border: 1px solid var(--alo-border);
+    background: oklch(100% 0 0 / 0.7);
+    box-shadow: var(--alo-shadow-soft);
+    backdrop-filter: blur(14px);
+  }
+
+  .alo-stats div {
+    border-radius: 28px;
+    padding: 24px;
+  }
+
+  .alo-stats strong {
+    display: block;
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    line-height: 1;
+  }
+
+  .alo-stats span {
+    display: block;
+    margin-top: 8px;
+    color: var(--alo-muted);
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .alo-marquee {
+    margin: 80px 0 0;
+    overflow: hidden;
+    border-block: 1px solid var(--alo-border);
+    background: oklch(100% 0 0 / 0.32);
+  }
+
+  .alo-marquee-track {
+    width: max-content;
+    display: flex;
+    gap: 36px;
+    padding: 22px 0;
+    color: var(--alo-muted);
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-size: 30px;
+    font-weight: 900;
+    white-space: nowrap;
+    animation: alo-marquee 45s linear infinite;
+  }
+
+  .alo-section {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+    padding: 92px 0 0;
+  }
+
+  .alo-section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 28px;
+    margin-bottom: 28px;
+  }
+
+  .alo-kicker {
+    color: var(--alo-flame);
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+
+  .alo-section h2,
+  .alo-cta h2 {
+    margin-top: 8px;
+    font-size: clamp(2.7rem, 6vw, 5.25rem);
+    line-height: 0.95;
+    font-weight: 900;
+  }
+
+  .alo-section h2 span,
+  .alo-cta h2 span {
+    color: var(--alo-flame);
+  }
+
+  .alo-restaurant-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .alo-restaurant-card {
+    min-height: 224px;
+    border-radius: 28px;
+    padding: 18px;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+
+  .alo-restaurant-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--alo-shadow-glow);
+  }
+
+  .alo-restaurant-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .alo-restaurant-icon {
+    font-size: 34px;
+  }
+
+  .alo-active {
+    padding: 6px 8px;
+    color: oklch(40% 0.12 138);
+    background: oklch(88% 0.19 128 / 0.18);
+    border: 1px solid oklch(88% 0.19 128 / 0.4);
+    box-shadow: none;
+  }
+
+  .alo-restaurant-rating {
+    margin-top: 16px;
+    color: var(--alo-flame);
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .alo-restaurant-card h3 {
+    margin-top: 5px;
+    font-size: 24px;
+  }
+
+  .alo-restaurant-card p,
+  .alo-time {
+    color: var(--alo-muted);
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .alo-time {
+    display: block;
+    margin-top: 18px;
+  }
+
+  .alo-open-site {
+    margin-top: 18px;
+    font-size: 13px;
+  }
+
+  .alo-brain-section {
+    display: grid;
+    grid-template-columns: 0.92fr 1.08fr;
+    gap: 56px;
+    align-items: start;
+  }
+
+  .alo-brain-copy {
+    position: sticky;
+    top: 32px;
+  }
+
+  .alo-brain-copy p,
+  .alo-cta p {
+    margin-top: 22px;
+    color: var(--alo-muted);
+    font-size: 18px;
+    line-height: 1.75;
+  }
+
+  .alo-brain-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 34px;
+    padding: 14px 16px;
+    border-radius: 24px;
+    background: var(--alo-ink);
+    color: var(--alo-cream);
+    box-shadow: var(--alo-shadow-ink);
+  }
+
+  .alo-feature-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .alo-feature-card {
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    gap: 16px;
+    align-items: start;
+    border-radius: 30px;
+    padding: 22px;
+  }
+
+  .alo-feature-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 18px;
+    display: grid;
+    place-items: center;
+    background: oklch(94% 0.04 80);
+    color: var(--alo-flame);
+  }
+
+  .alo-feature-card > span {
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    color: var(--alo-flame);
+    font-size: 32px;
+    line-height: 1;
+    font-weight: 900;
+  }
+
+  .alo-feature-card h3 {
+    font-size: 24px;
+  }
+
+  .alo-feature-card p {
+    grid-column: 3;
+    margin-top: -8px;
+    color: var(--alo-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .alo-how {
+    text-align: center;
+  }
+
+  .alo-step-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 38px;
+    text-align: left;
+  }
+
+  .alo-step-card {
+    border-radius: 30px;
+    padding: 26px;
+  }
+
+  .alo-step-card div {
+    width: 54px;
+    height: 54px;
+    border-radius: 20px;
+    display: grid;
+    place-items: center;
+    background: var(--alo-ink);
+    color: var(--alo-cream);
+    font-family: "Fraunces", ui-serif, Georgia, serif;
+    font-size: 28px;
+    font-weight: 900;
+  }
+
+  .alo-step-card h3 {
+    margin-top: 26px;
+    font-size: 28px;
+  }
+
+  .alo-step-card p {
+    margin-top: 10px;
+    color: var(--alo-muted);
+    line-height: 1.65;
+  }
+
+  .alo-cta {
+    width: min(1120px, calc(100% - 32px));
+    margin: 96px auto 0;
+    border-radius: 42px;
+    padding: clamp(28px, 6vw, 64px);
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: end;
+    background:
+      radial-gradient(50% 80% at 85% 10%, oklch(78% 0.2 62 / 0.7), transparent 55%),
+      var(--alo-ink);
+    color: var(--alo-cream);
+    box-shadow: var(--alo-shadow-ink);
+  }
+
+  .alo-cta .alo-kicker,
+  .alo-cta h2 {
+    color: var(--alo-cream);
+  }
+
+  .alo-cta p {
+    max-width: 690px;
+    color: oklch(97% 0.02 80 / 0.76);
+  }
+
+  .alo-cta-actions {
+    justify-content: flex-end;
+  }
+
+  .alo-footer {
+    width: min(1120px, calc(100% - 32px));
+    margin: 54px auto 0;
+    padding: 28px 0 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    color: var(--alo-muted);
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .alo-icon {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+  }
+
+  .alo-icon-lg {
+    width: 22px;
+    height: 22px;
+  }
+
+  @keyframes alo-marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  @keyframes alo-pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(1.4); }
+  }
+
+  @keyframes alo-float {
+    0%, 100% { transform: translateY(0) rotate(6deg); }
+    50% { transform: translateY(-14px) rotate(8deg); }
+  }
+
+  @media (max-width: 980px) {
+    .alo-nav {
+      display: none;
+    }
+
+    .alo-hero,
+    .alo-brain-section,
+    .alo-cta {
+      grid-template-columns: 1fr;
+    }
+
+    .alo-phone-card {
+      max-width: 430px;
+      margin: 0 auto;
+    }
+
+    .alo-stats,
+    .alo-restaurant-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .alo-brain-copy {
+      position: static;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .alo-header {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .alo-header-actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .alo-hero {
+      min-height: auto;
+      gap: 32px;
+      padding-top: 16px;
+    }
+
+    .alo-hero h1 {
+      font-size: clamp(3.1rem, 18vw, 4.6rem);
+    }
+
+    .alo-hero-actions .alo-pill {
+      width: 100%;
+    }
+
+    .alo-phone-card {
+      transform: none;
+      animation: none;
+      border-radius: 32px;
+      padding: 16px;
+    }
+
+    .alo-stats,
+    .alo-restaurant-grid,
+    .alo-step-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .alo-section {
+      padding-top: 72px;
+    }
+
+    .alo-section-head,
+    .alo-footer {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+
+    .alo-feature-card {
+      grid-template-columns: auto 1fr;
+    }
+
+    .alo-feature-card > span {
+      grid-column: 1;
+    }
+
+    .alo-feature-card h3,
+    .alo-feature-card p {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-cta {
+    width: 100%;
+    max-width: none;
+    min-height: 390px;
+    margin: 96px 0 0;
+    padding: 72px max(32px, calc((100vw - 1152px) / 2 + 48px));
+    border-radius: 0;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    overflow: hidden;
+    color: var(--alo-cream);
+    background:
+      radial-gradient(58% 120% at 92% 0%, oklch(55% 0.22 36 / 0.95), transparent 62%),
+      linear-gradient(100deg, oklch(11% 0.03 35) 0%, oklch(12% 0.03 35) 44%, oklch(25% 0.1 34) 74%, oklch(38% 0.18 34) 100%);
+    box-shadow: none;
+  }
+
+  .alo-faithful .alo-cta::before {
+    display: none;
+  }
+
+  .alo-faithful .alo-cta > div {
+    width: 100%;
+    display: grid;
+    grid-template-columns: minmax(0, 720px) minmax(260px, 1fr);
+    grid-template-rows: auto auto auto;
+    column-gap: 48px;
+    align-items: end;
+  }
+
+  .alo-faithful .alo-cta .alo-kicker,
+  .alo-faithful .alo-cta h2,
+  .alo-faithful .alo-cta p {
+    grid-column: 1;
+  }
+
+  .alo-faithful .alo-cta .alo-kicker {
+    color: var(--alo-cream);
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+  }
+
+  .alo-faithful .alo-cta h2 {
+    margin-top: 18px;
+    color: var(--alo-cream);
+    font-size: clamp(3.2rem, 5vw, 5.85rem);
+    line-height: 0.96;
+    font-weight: 900;
+    max-width: 760px;
+  }
+
+  .alo-faithful .alo-cta h2 span {
+    color: var(--alo-flame);
+    font-style: italic;
+  }
+
+  .alo-faithful .alo-cta p {
+    max-width: 610px;
+    margin-top: 22px;
+    color: oklch(97% 0.02 80 / 0.72);
+    font-size: 1.15rem;
+    line-height: 1.55;
+  }
+
+  .alo-faithful .alo-cta-actions {
+    grid-column: 2;
+    grid-row: 3;
+    justify-self: end;
+    align-self: end;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: nowrap;
+  }
+
+  .alo-faithful .alo-cta-actions .alo-pill {
+    min-height: 48px;
+    padding: 0 26px;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .alo-faithful .alo-cta-actions .alo-pill-primary {
+    background: linear-gradient(135deg, oklch(70% 0.24 48), oklch(62% 0.28 32));
+    color: white;
+    box-shadow: none;
+  }
+
+  .alo-faithful .alo-cta-actions .alo-pill-outline {
+    color: var(--alo-cream);
+    border: 1px solid oklch(97% 0.02 80 / 0.26);
+    background: transparent;
+  }
+
+  @media (max-width: 980px) {
+    .alo-faithful .alo-cta {
+      min-height: auto;
+      padding: 58px 24px;
+    }
+
+    .alo-faithful .alo-cta > div {
+      grid-template-columns: 1fr;
+    }
+
+    .alo-faithful .alo-cta-actions {
+      grid-column: 1;
+      margin-top: 32px;
+      justify-self: start;
+      flex-wrap: wrap;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .alo-faithful .alo-cta {
+      margin-top: 72px;
+      padding: 46px 20px;
+    }
+
+    .alo-faithful .alo-cta h2 {
+      font-size: clamp(2.55rem, 13vw, 3.55rem);
+    }
+
+    .alo-faithful .alo-cta-actions,
+    .alo-faithful .alo-cta-actions .alo-pill {
+      width: 100%;
+    }
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-plan-card {
+    border-color: oklch(86% 0.025 76);
+    background:
+      linear-gradient(180deg, oklch(100% 0 0 / 0.95), oklch(98% 0.018 82 / 0.92)),
+      oklch(99% 0.012 82);
+    box-shadow:
+      0 1px 0 oklch(100% 0 0 / 0.9) inset,
+      0 24px 70px -46px oklch(17% 0.02 40 / 0.48);
+  }
+
+  .alo-faithful .alo-plan-card::before {
+    height: 4px;
+    background: linear-gradient(90deg, oklch(72% 0.2 55), oklch(66% 0.19 36));
+    opacity: 0.85;
+  }
+
+  .alo-faithful .alo-plan-card h3,
+  .alo-faithful .alo-plan-price strong {
+    color: oklch(15% 0.02 38);
+  }
+
+  .alo-faithful .alo-plan-card p {
+    color: oklch(42% 0.018 45);
+  }
+
+  .alo-faithful .alo-plan-label {
+    color: oklch(61% 0.19 42);
+  }
+
+  .alo-faithful .alo-plan-card ul {
+    color: oklch(25% 0.018 45 / 0.86);
+  }
+
+  .alo-faithful .alo-plan-card li::before {
+    background: oklch(91% 0.07 58);
+    color: oklch(56% 0.19 42);
+  }
+
+  .alo-faithful .alo-plan-card-featured {
+    color: var(--alo-cream);
+    border-color: oklch(67% 0.18 42 / 0.52);
+    background:
+      radial-gradient(68% 56% at 92% 0%, oklch(62% 0.21 42 / 0.5), transparent 62%),
+      radial-gradient(50% 44% at 0% 100%, oklch(73% 0.18 62 / 0.12), transparent 64%),
+      linear-gradient(155deg, oklch(18% 0.025 38), oklch(13% 0.018 36) 56%, oklch(19% 0.028 42));
+    box-shadow:
+      0 1px 0 oklch(100% 0 0 / 0.1) inset,
+      0 34px 95px -42px oklch(13% 0.02 38 / 0.82);
+  }
+
+  .alo-faithful .alo-plan-card-featured::before {
+    background: linear-gradient(90deg, oklch(78% 0.19 62), oklch(66% 0.23 38));
+    opacity: 1;
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-badge {
+    background: linear-gradient(135deg, oklch(72% 0.22 55), oklch(62% 0.24 34));
+    color: white;
+    box-shadow: 0 12px 28px -18px oklch(67% 0.24 38);
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-label {
+    color: oklch(78% 0.17 62);
+  }
+
+  .alo-faithful .alo-plan-card-featured h3,
+  .alo-faithful .alo-plan-card-featured .alo-plan-price strong {
+    color: var(--alo-cream);
+  }
+
+  .alo-faithful .alo-plan-card-featured p,
+  .alo-faithful .alo-plan-card-featured ul {
+    color: oklch(97% 0.02 80 / 0.74);
+  }
+
+  .alo-faithful .alo-plan-card-featured .alo-plan-price small,
+  .alo-faithful .alo-plan-card-featured .alo-plan-price span {
+    color: oklch(97% 0.02 80 / 0.62);
+  }
+
+  .alo-faithful .alo-plan-card-featured li::before {
+    background: oklch(73% 0.18 62 / 0.18);
+    color: oklch(80% 0.17 64);
+  }
+
+  .alo-faithful .alo-pricing .alo-pill-outline {
+    color: oklch(15% 0.02 38);
+    border-color: oklch(79% 0.025 76);
+    background: oklch(100% 0 0 / 0.88);
+    box-shadow: 0 10px 25px -20px oklch(16% 0.02 40 / 0.4);
+  }
+}
+
+@layer components {
+  .alo-faithful {
+    --alo-cream: oklch(96.5% 0.018 78);
+    background:
+      linear-gradient(180deg, oklch(97.5% 0.014 82), oklch(94.5% 0.02 76));
+  }
+
+  .alo-faithful .alo-gradient-bg {
+    opacity: 1;
+    background:
+      repeating-linear-gradient(
+        0deg,
+        oklch(20% 0.018 42 / 0.035) 0 1px,
+        transparent 1px 42px
+      ),
+      repeating-linear-gradient(
+        90deg,
+        oklch(20% 0.018 42 / 0.028) 0 1px,
+        transparent 1px 42px
+      ),
+      linear-gradient(
+        118deg,
+        transparent 0 47%,
+        oklch(68% 0.18 42 / 0.08) 47% 48%,
+        transparent 48% 100%
+      );
+    mask-image: linear-gradient(to bottom, black 0%, black 72%, transparent 100%);
+  }
+
+  .alo-faithful .alo-dot-bg {
+    opacity: 0;
+    background: none;
+  }
+
+  .alo-faithful .alo-hero,
+  .alo-faithful .alo-section {
+    isolation: isolate;
+  }
+
+  .alo-faithful .alo-stats {
+    background: oklch(98% 0.012 82 / 0.72);
+    backdrop-filter: blur(10px);
+  }
+
+  .alo-faithful .alo-restaurant-card,
+  .alo-faithful .alo-feature-card,
+  .alo-faithful .alo-step-card,
+  .alo-faithful .alo-plan-card {
+    backdrop-filter: blur(8px);
+  }
+}
+
+@layer components {
+  .alo-faithful {
+    --alo-cream: oklch(96.8% 0.018 78);
+    background:
+      radial-gradient(90% 54% at 50% 0%, oklch(99% 0.012 82), transparent 72%),
+      linear-gradient(180deg, oklch(96.8% 0.018 78), oklch(94.8% 0.018 76));
+  }
+
+  .alo-faithful .alo-gradient-bg {
+    opacity: 1;
+    background:
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 44px,
+        oklch(18% 0.018 42 / 0.045) 44px 45px,
+        transparent 45px 92px
+      ),
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 138px,
+        oklch(68% 0.18 42 / 0.055) 138px 140px,
+        transparent 140px 276px
+      ),
+      linear-gradient(135deg, oklch(72% 0.17 48 / 0.1), transparent 42%);
+    mask-image: linear-gradient(to bottom, black 0%, black 62%, transparent 100%);
+  }
+
+  .alo-faithful .alo-dot-bg {
+    opacity: 0;
+    background: none;
+  }
+}
+
+@layer components {
+  .alo-faithful {
+    --alo-cream: oklch(99.2% 0.004 80);
+    background:
+      radial-gradient(84% 48% at 50% -8%, oklch(100% 0 0), transparent 70%),
+      linear-gradient(180deg, oklch(99.2% 0.004 80), oklch(97.8% 0.006 80));
+  }
+
+  .alo-faithful .alo-gradient-bg {
+    opacity: 1;
+    background:
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 54px,
+        oklch(16% 0.018 42 / 0.022) 54px 55px,
+        transparent 55px 116px
+      ),
+      repeating-linear-gradient(
+        112deg,
+        transparent 0 168px,
+        oklch(68% 0.18 42 / 0.03) 168px 170px,
+        transparent 170px 336px
+      );
+    mask-image: linear-gradient(to bottom, black 0%, black 56%, transparent 100%);
+  }
+
+  .alo-faithful .alo-dot-bg {
+    opacity: 0;
+    background: none;
+  }
+
+  .alo-faithful .alo-stats {
+    background: oklch(100% 0 0 / 0.76);
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 14px max(24px, calc((100vw - 1152px) / 2 + 24px)) 16px;
+    border-top: 6px solid oklch(68% 0.24 42);
+    border-bottom: 1px solid oklch(16% 0.02 40 / 0.08);
+    background: oklch(100% 0 0 / 0.88);
+    box-shadow: 0 18px 45px -38px oklch(16% 0.02 40 / 0.5);
+    backdrop-filter: blur(16px);
+  }
+
+  .alo-faithful .alo-header::before {
+    content: "";
+    position: absolute;
+    inset: -6px 0 auto;
+    height: 6px;
+    background: linear-gradient(90deg, oklch(72% 0.23 55), oklch(62% 0.26 32), oklch(74% 0.21 54));
+  }
+
+  .alo-faithful .alo-nav {
+    min-height: 42px;
+    padding: 4px;
+    border: 1px solid oklch(16% 0.02 40 / 0.08);
+    border-radius: 999px;
+    background: oklch(98.5% 0.004 80 / 0.8);
+    gap: 2px;
+  }
+
+  .alo-faithful .alo-nav a {
+    min-height: 32px;
+    padding: 0 14px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    color: oklch(24% 0.02 42 / 0.72);
+    font-weight: 800;
+  }
+
+  .alo-faithful .alo-nav a:hover {
+    color: oklch(15% 0.02 38);
+    background: oklch(100% 0 0);
+  }
+
+  .alo-faithful .alo-brand-mark {
+    border-radius: 14px;
+    box-shadow: none;
+  }
+
+  .alo-faithful .alo-hero {
+    padding-top: 56px;
+  }
+
+  @media (max-width: 980px) {
+    .alo-faithful .alo-header {
+      position: relative;
+      padding-inline: 20px;
+    }
+  }
+}
+
+@layer components {
+  @media (max-width: 760px) {
+    .alo-faithful {
+      width: 100%;
+      overflow-x: hidden;
+    }
+
+    .alo-faithful .alo-gradient-bg {
+      background:
+        repeating-linear-gradient(
+          112deg,
+          transparent 0 64px,
+          oklch(16% 0.018 42 / 0.018) 64px 65px,
+          transparent 65px 132px
+        );
+      mask-image: linear-gradient(to bottom, black 0%, black 48%, transparent 100%);
+    }
+
+    .alo-faithful .alo-header {
+      position: sticky;
+      top: 0;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 10px 12px;
+      padding: 10px 14px 12px;
+      border-top-width: 5px;
+    }
+
+    .alo-faithful .alo-brand {
+      min-width: 0;
+      gap: 8px;
+      font-size: 1rem;
+    }
+
+    .alo-faithful .alo-brand-mark {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+    }
+
+    .alo-faithful .alo-header-actions {
+      width: auto;
+      justify-content: flex-end;
+      gap: 6px;
+    }
+
+    .alo-faithful .alo-link-button {
+      display: none;
+    }
+
+    .alo-faithful .alo-header-actions .alo-pill {
+      min-height: 34px;
+      padding: 0 12px;
+      font-size: 0.76rem;
+      white-space: nowrap;
+    }
+
+    .alo-faithful .alo-nav {
+      grid-column: 1 / -1;
+      width: 100%;
+      min-height: 38px;
+      display: flex !important;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 3px;
+      padding: 3px;
+      scrollbar-width: none;
+    }
+
+    .alo-faithful .alo-nav::-webkit-scrollbar {
+      display: none;
+    }
+
+    .alo-faithful .alo-nav a {
+      flex: 0 0 auto;
+      min-height: 30px;
+      padding: 0 11px;
+      font-size: 0.72rem;
+      line-height: 1;
+    }
+
+    .alo-faithful .alo-hero {
+      width: 100%;
+      padding: 30px 16px 58px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+
+    .alo-faithful .alo-status-pill {
+      max-width: 100%;
+      font-size: 0.7rem;
+    }
+
+    .alo-faithful .alo-hero h1 {
+      max-width: 100%;
+      font-size: clamp(2.55rem, 13vw, 3.55rem);
+      line-height: 0.98;
+    }
+
+    .alo-faithful .alo-hero p {
+      max-width: 100%;
+      font-size: 0.98rem;
+      line-height: 1.58;
+    }
+
+    .alo-faithful .alo-search-form {
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      padding: 8px;
+      border-radius: 24px;
+    }
+
+    .alo-faithful .alo-search-form > div {
+      min-width: 0;
+    }
+
+    .alo-faithful .alo-search-form input {
+      min-width: 0;
+      width: 100%;
+      height: 44px;
+      font-size: 0.95rem;
+    }
+
+    .alo-faithful .alo-search-form button {
+      width: 100%;
+      min-height: 46px;
+      border-radius: 18px;
+      font-size: 0.9rem;
+    }
+
+    .alo-faithful .alo-benefits {
+      flex-wrap: wrap;
+      gap: 8px 12px;
+      font-size: 0.78rem;
+    }
+
+    .alo-faithful .alo-phone-wrap {
+      width: 100%;
+      max-width: 340px;
+      margin: 0 auto;
+    }
+
+    .alo-faithful .alo-phone-shell {
+      width: min(100%, 318px);
+      margin: 0 auto;
+      border-radius: 34px;
+      transform: none;
+    }
+
+    .alo-faithful .alo-phone-screen {
+      min-height: 560px;
+      border-radius: 28px;
+    }
+
+    .alo-faithful .alo-phone-float {
+      display: none;
+    }
+
+    .alo-faithful .alo-stats {
+      margin: 0;
+      padding: 0;
+    }
+
+    .alo-faithful .alo-stats > div {
+      width: 100%;
+      display: grid !important;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px 12px;
+      padding: 18px 16px;
+    }
+
+    .alo-faithful .alo-stats article {
+      min-width: 0;
+    }
+
+    .alo-faithful .alo-stats strong {
+      font-size: 1.55rem;
+    }
+
+    .alo-faithful .alo-stats span {
+      font-size: 0.52rem;
+    }
+
+    .alo-faithful .alo-name-marquee {
+      padding: 14px 0;
+    }
+
+    .alo-faithful .alo-name-marquee > div {
+      gap: 28px;
+    }
+
+    .alo-faithful .alo-section,
+    .alo-faithful .alo-pricing {
+      width: 100%;
+      padding: 66px 16px 0;
+    }
+
+    .alo-faithful .alo-section-head {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      align-items: start;
+    }
+
+    .alo-faithful .alo-section-head h2,
+    .alo-faithful .alo-brain-copy h2,
+    .alo-faithful .alo-how h2 {
+      font-size: clamp(2.35rem, 11vw, 3.2rem);
+      line-height: 1;
+    }
+
+    .alo-faithful .alo-card-marquee {
+      margin-inline: -16px;
+      padding-left: 16px;
+    }
+
+    .alo-faithful .alo-restaurant-card {
+      width: 210px;
+      border-radius: 24px;
+    }
+
+    .alo-faithful .alo-brain-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+
+    .alo-faithful .alo-brain-copy {
+      position: static;
+    }
+
+    .alo-faithful .alo-feature-card {
+      grid-template-columns: 1fr;
+      padding: 20px;
+      border-radius: 24px;
+    }
+
+    .alo-faithful .alo-feature-card p {
+      grid-column: auto;
+      margin-top: 8px;
+    }
+
+    .alo-faithful .alo-step-grid,
+    .alo-faithful .alo-plan-grid {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .alo-faithful .alo-step-card,
+    .alo-faithful .alo-plan-card,
+    .alo-faithful .alo-plan-card-featured {
+      min-height: auto;
+      transform: none;
+      border-radius: 26px;
+      padding: 24px;
+    }
+
+    .alo-faithful .alo-plan-badge {
+      position: static;
+      width: fit-content;
+      margin-bottom: 14px;
+    }
+
+    .alo-faithful .alo-plan-card h3 {
+      font-size: clamp(2.25rem, 12vw, 3rem);
+    }
+
+    .alo-faithful .alo-plan-price strong {
+      font-size: clamp(2.7rem, 14vw, 3.7rem);
+    }
+
+    .alo-faithful .alo-cta {
+      width: 100%;
+      min-height: auto;
+      margin-top: 72px;
+      padding: 46px 18px;
+    }
+
+    .alo-faithful .alo-cta > div {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .alo-faithful .alo-cta h2 {
+      font-size: clamp(2.45rem, 12vw, 3.4rem);
+      line-height: 1;
+    }
+
+    .alo-faithful .alo-cta p {
+      font-size: 0.98rem;
+    }
+
+    .alo-faithful .alo-cta-actions {
+      grid-column: 1;
+      grid-row: auto;
+      width: 100%;
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      justify-self: stretch;
+    }
+
+    .alo-faithful .alo-cta-actions .alo-pill {
+      width: 100%;
+    }
+
+    .alo-faithful .alo-footer {
+      width: 100%;
+      padding: 26px 16px 36px;
+      display: grid;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 390px) {
+    .alo-faithful .alo-brand > span:last-child {
+      font-size: 0.9rem;
+    }
+
+    .alo-faithful .alo-header-actions .alo-pill {
+      padding-inline: 10px;
+      font-size: 0.7rem;
+    }
+
+    .alo-faithful .alo-hero h1 {
+      font-size: 2.42rem;
+    }
+
+    .alo-faithful .alo-phone-screen {
+      min-height: 520px;
+    }
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-restaurant-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .alo-faithful .alo-restaurant-card:focus-visible {
+    outline: 3px solid oklch(68% 0.24 42 / 0.45);
+    outline-offset: 4px;
+  }
+
+  .alo-tone-galaxy {
+    background:
+      radial-gradient(circle at 28% 24%, oklch(91% 0.17 94 / 0.95) 0 10%, transparent 11%),
+      radial-gradient(circle at 70% 22%, oklch(72% 0.2 318 / 0.65) 0 9%, transparent 10%),
+      linear-gradient(135deg, oklch(21% 0.08 270), oklch(39% 0.17 305) 45%, oklch(67% 0.22 42));
+  }
+
+  .alo-faithful .alo-restaurant-body strong {
+    color: var(--alo-flame);
+    font-size: 0.65rem;
+    font-weight: 900;
+    line-height: 1;
+    white-space: nowrap;
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-plan-grid {
+    grid-template-columns: repeat(2, minmax(280px, 420px));
+    justify-content: center;
+  }
+
+  .alo-faithful .alo-plan-card {
+    min-height: 500px;
+  }
+
+  @media (max-width: 760px) {
+    .alo-faithful .alo-plan-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .alo-faithful .alo-plan-card {
+      min-height: auto;
+    }
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-restaurant-art img {
+    width: 88px;
+    height: 88px;
+    object-fit: contain;
+    border-radius: 24px;
+    background: oklch(100% 0 0 / 0.92);
+    padding: 10px;
+    box-shadow: 0 16px 26px -18px oklch(10% 0.04 270 / 0.65);
+  }
+
+  .alo-tone-galaxy img {
+    background: oklch(100% 0 0 / 0.95);
+  }
+
+  .alo-tone-rancho {
+    background:
+      radial-gradient(circle at 26% 22%, oklch(85% 0.15 76 / 0.72) 0 18%, transparent 19%),
+      linear-gradient(135deg, oklch(42% 0.12 48), oklch(30% 0.08 36) 55%, oklch(62% 0.17 54));
+  }
+
+  .alo-tone-sushi {
+    background:
+      radial-gradient(circle at 72% 26%, oklch(100% 0 0 / 0.95) 0 15%, transparent 16%),
+      radial-gradient(circle at 28% 78%, oklch(62% 0.23 29 / 0.72) 0 18%, transparent 19%),
+      linear-gradient(135deg, oklch(18% 0.01 260), oklch(34% 0.14 28) 58%, oklch(15% 0.01 260));
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-brain-badge {
+    background: oklch(100% 0 0 / 0.94);
+    border: 1px solid oklch(16% 0.02 40 / 0.12);
+    color: var(--alo-ink);
+    box-shadow: 0 22px 55px -34px oklch(16% 0.02 40 / 0.48);
+  }
+
+  .alo-faithful .alo-brain-badge strong {
+    display: block;
+    color: oklch(15% 0.02 38);
+    font-size: 0.92rem;
+    font-weight: 900;
+    line-height: 1.2;
+  }
+
+  .alo-faithful .alo-brain-badge span {
+    display: block;
+    margin-top: 3px;
+    color: oklch(42% 0.02 45);
+    font-size: 0.78rem;
+    font-weight: 700;
+    line-height: 1.25;
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-restaurant-art.alo-tone-galaxy {
+    background: linear-gradient(135deg, #ffe12b, #ffd21a);
+    overflow: hidden;
+  }
+
+  .alo-faithful .alo-restaurant-art.alo-tone-galaxy img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border-radius: 0;
+    object-fit: contain;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .alo-faithful .alo-restaurant-art.alo-tone-galaxy b,
+  .alo-faithful .alo-restaurant-art.alo-tone-galaxy em {
+    z-index: 1;
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-card-marquee > div {
+    animation-duration: 24s;
+  }
+
+  .alo-faithful .alo-plan-grid {
+    grid-template-columns: repeat(2, minmax(320px, 400px));
+    gap: 18px;
+    margin-top: 54px;
+  }
+
+  .alo-faithful .alo-plan-card {
+    min-height: 390px;
+    padding: 22px 24px;
+    border-radius: 22px;
+  }
+
+  .alo-faithful .alo-plan-badge {
+    top: 14px;
+    right: 14px;
+    min-height: 28px;
+    padding-inline: 14px;
+    font-size: 0.68rem;
+  }
+
+  .alo-faithful .alo-plan-card h3 {
+    font-size: clamp(1.85rem, 3.4vw, 2.45rem);
+  }
+
+  .alo-faithful .alo-plan-card p {
+    font-size: 0.84rem;
+    line-height: 1.42;
+  }
+
+  .alo-faithful .alo-plan-price {
+    margin-top: 18px;
+  }
+
+  .alo-faithful .alo-plan-price strong {
+    font-size: clamp(2.5rem, 4.4vw, 3.45rem);
+  }
+
+  .alo-faithful .alo-plan-card ul {
+    margin-top: 16px;
+    gap: 10px;
+  }
+
+  .alo-faithful .alo-plan-card li {
+    font-size: 0.82rem;
+  }
+
+  .alo-faithful .alo-plan-card .alo-pill {
+    min-height: 42px;
+    margin-top: 18px;
+    font-size: 0.82rem;
+  }
+
+  @media (max-width: 760px) {
+    .alo-faithful .alo-plan-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .alo-faithful .alo-plan-card {
+      min-height: auto;
+      padding: 22px;
+    }
+  }
+}
+
+@layer components {
+  .alo-faithful .alo-nav {
+    min-height: auto;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+    gap: clamp(18px, 3vw, 34px);
+  }
+
+  .alo-faithful .alo-nav a {
+    min-height: auto;
+    padding: 0;
+    border-radius: 0;
+    color: oklch(24% 0.02 42 / 0.72);
+    font-weight: 800;
+  }
+
+  .alo-faithful .alo-nav a:hover {
+    color: var(--alo-flame);
+    background: transparent;
+  }
+
+  .alo-faithful .alo-brain-section {
+    grid-template-columns: minmax(280px, 0.82fr) minmax(420px, 1.18fr);
+    align-items: center;
+    gap: clamp(32px, 5vw, 72px);
+    padding-top: clamp(64px, 7vw, 92px);
+    padding-bottom: clamp(64px, 7vw, 92px);
+  }
+
+  .alo-faithful .alo-brain-copy {
+    position: static;
+    max-width: 500px;
+  }
+
+  .alo-faithful .alo-brain-copy p {
+    max-width: 460px;
+    margin-top: 18px;
+    font-size: clamp(1rem, 1.5vw, 1.18rem);
+    line-height: 1.62;
+  }
+
+  .alo-faithful .alo-brain-badge {
+    max-width: 420px;
+    padding: 14px 16px;
+    border-radius: 18px;
+  }
+
+  .alo-faithful .alo-feature-list {
+    max-width: 640px;
+    margin-left: auto;
+    gap: 14px;
+  }
+
+  .alo-faithful .alo-feature-card {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    align-items: center;
+    gap: 18px;
+    padding: 20px 22px;
+    border-radius: 20px;
+  }
+
+  .alo-faithful .alo-feature-emoji {
+    width: 52px;
+    height: 52px;
+    border-radius: 16px;
+  }
+
+  .alo-faithful .alo-feature-card h3 {
+    margin-top: 6px;
+    font-size: clamp(1.25rem, 2vw, 1.55rem);
+    line-height: 1.05;
+  }
+
+  .alo-faithful .alo-feature-card p {
+    margin-top: 6px;
+    font-size: 0.92rem;
+    line-height: 1.48;
+  }
+
+  @media (max-width: 900px) {
+    .alo-faithful .alo-brain-section {
+      grid-template-columns: 1fr;
+      gap: 26px;
+    }
+
+    .alo-faithful .alo-feature-list,
+    .alo-faithful .alo-brain-copy,
+    .alo-faithful .alo-brain-copy p {
+      max-width: none;
+    }
+  }
+
+  @media (max-width: 680px) {
+    .alo-faithful .alo-nav {
+      padding: 0;
+      gap: 18px;
+      border: 0;
+      background: transparent;
+    }
+
+    .alo-faithful .alo-nav a {
+      padding: 0;
+      font-size: 0.78rem;
+    }
+
+    .alo-faithful .alo-feature-card {
+      grid-template-columns: 44px 1fr;
+      padding: 18px;
+    }
+
+    .alo-faithful .alo-feature-card p {
+      grid-column: 1 / -1;
+    }
+  }
+}

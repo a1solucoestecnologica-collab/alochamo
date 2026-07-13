@@ -1,0 +1,22 @@
+CREATE TABLE `featured_vouchers` (
+	`id` int AUTO_INCREMENT NOT NULL,
+	`title` varchar(255) NOT NULL,
+	`description` text,
+	`imageUrl` text NOT NULL,
+	`code` varchar(50) NOT NULL,
+	`discountType` enum('percentage','fixed','free_item') NOT NULL,
+	`discountValue` int,
+	`menuItemId` int,
+	`minOrderValue` int,
+	`maxDiscount` int,
+	`usageLimit` int,
+	`usageCount` int NOT NULL DEFAULT 0,
+	`order` int DEFAULT 0,
+	`isActive` boolean NOT NULL DEFAULT true,
+	`validFrom` timestamp,
+	`validUntil` timestamp,
+	`createdAt` timestamp NOT NULL DEFAULT (now()),
+	`updatedAt` timestamp NOT NULL DEFAULT (now()) ON UPDATE CURRENT_TIMESTAMP,
+	CONSTRAINT `featured_vouchers_id` PRIMARY KEY(`id`),
+	CONSTRAINT `featured_vouchers_code_unique` UNIQUE(`code`)
+);
