@@ -1,0 +1,11 @@
+{
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm build:all",
+  "outputDirectory": "dist/public",
+  "rewrites": [
+    {
+      "source": "/((?!assets/|favicon.ico|favicon.png).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
