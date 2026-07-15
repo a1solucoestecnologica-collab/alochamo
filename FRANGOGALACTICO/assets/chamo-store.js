@@ -112,6 +112,28 @@
       </a>`;
   }
 
+  function relatedCard(item, store) {
+    const categories = store.categories || [];
+    const category = categoryName(item, categories);
+    const image = imageFor({ ...item, categoryName: category }, store);
+    const theme = themeFor(store);
+    const imageFit = theme.cardImageFit === "cover" ? "object-cover" : "object-contain mix-blend-multiply";
+    const badge = item.isFeatured ? '<span class="chamo-related-badge">Top</span>' : "";
+
+    return `
+      <a href="${storeBasePath}/produto/${encodeURIComponent(item.id)}" data-chamo-product-card data-chamo-name="${escapeHtml(item.name)}" class="chamo-related-card group">
+        <div class="chamo-related-badges">${badge}</div>
+        <div class="chamo-related-image">
+          <img src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}" loading="lazy" width="800" height="800" class="${imageFit}"/>
+        </div>
+        <div class="chamo-related-body">
+          <div class="chamo-related-meta">${escapeHtml(category)}</div>
+          <div class="chamo-related-name">${escapeHtml(item.name)}</div>
+          <div class="chamo-related-price">${price(item.price)}</div>
+        </div>
+      </a>`;
+  }
+
   function section(title, items, store, options = {}) {
     if (!items.length) return "";
 
@@ -283,6 +305,103 @@
       }
       .chamo-ifood-item:hover .chamo-ifood-image img {
         transform: scale(1.035);
+      }
+      .chamo-related-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.85rem;
+      }
+      .chamo-related-card {
+        position: relative;
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+        border: 1px solid rgba(10, 17, 40, 0.08);
+        border-radius: 1rem;
+        background: #fff;
+        padding: 0.75rem;
+        box-shadow: 0 14px 35px -32px rgba(10, 17, 40, 0.55);
+        transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+      }
+      .chamo-related-card:hover {
+        border-color: rgba(255, 199, 44, 0.75);
+        box-shadow: 0 22px 42px -34px rgba(10, 17, 40, 0.75);
+        transform: translateY(-1px);
+      }
+      .chamo-related-badges {
+        position: absolute;
+        top: 1rem;
+        left: 1rem;
+        z-index: 2;
+      }
+      .chamo-related-badge {
+        border-radius: 999px;
+        background: #0a1128;
+        color: #fff;
+        padding: 0.18rem 0.42rem;
+        font-size: 0.58rem;
+        font-weight: 900;
+        text-transform: uppercase;
+      }
+      .chamo-related-image {
+        aspect-ratio: 1 / 1;
+        border-radius: 0.85rem;
+        background: #f7f5f1;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+      .chamo-related-image img {
+        width: 100%;
+        height: 100%;
+        object-position: center;
+        transition: transform 180ms ease;
+      }
+      .chamo-related-card:hover .chamo-related-image img {
+        transform: scale(1.04);
+      }
+      .chamo-related-body {
+        min-width: 0;
+        padding-top: 0.7rem;
+        display: flex;
+        flex: 1;
+        flex-direction: column;
+        gap: 0.25rem;
+      }
+      .chamo-related-meta {
+        color: rgba(10, 17, 40, 0.45);
+        font-size: 0.62rem;
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .chamo-related-name {
+        min-height: 2rem;
+        color: #0a1128;
+        font-size: 0.86rem;
+        font-weight: 800;
+        line-height: 1.15;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .chamo-related-price {
+        margin-top: auto;
+        padding-top: 0.35rem;
+        color: #0a1128;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+      @media (min-width: 640px) {
+        .chamo-related-grid {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+        }
+      }
+      @media (min-width: 1024px) {
+        .chamo-related-grid {
+          grid-template-columns: repeat(6, minmax(0, 1fr));
+        }
       }
       @media (max-width: 900px) {
         .chamo-ifood-list {
@@ -508,7 +627,7 @@
           </div>
         </div>
       </div>
-      ${related.length ? `<section class="mt-16"><h3 class="text-2xl mb-4">Voce tambem vai curtir</h3><div class="chamo-ifood-list chamo-related-list">${related.map((relatedItem) => card(relatedItem, store)).join("")}</div></section>` : ""}`;
+      ${related.length ? `<section class="mt-16"><h3 class="text-2xl mb-4">Voce tambem vai curtir</h3><div class="chamo-related-grid">${related.map((relatedItem) => relatedCard(relatedItem, store)).join("")}</div></section>` : ""}`;
 
     return true;
   }
