@@ -508,7 +508,7 @@
           </div>
         </div>
       </div>
-      ${related.length ? `<section class="mt-16"><h3 class="text-2xl mb-4">Voce tambem vai curtir</h3><div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3">${related.map((relatedItem) => card(relatedItem, store)).join("")}</div></section>` : ""}`;
+      ${related.length ? `<section class="mt-16"><h3 class="text-2xl mb-4">Voce tambem vai curtir</h3><div class="chamo-ifood-list chamo-related-list">${related.map((relatedItem) => card(relatedItem, store)).join("")}</div></section>` : ""}`;
 
     return true;
   }
