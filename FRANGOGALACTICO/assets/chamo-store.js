@@ -92,20 +92,22 @@
     const image = imageFor({ ...item, categoryName: category }, store);
     const theme = themeFor(store);
     const imageFit = theme.cardImageFit === "cover" ? "object-cover" : "object-contain mix-blend-multiply";
-    const badges = item.isFeatured ? '<span class="badge-chip bg-foreground text-background">Top</span>' : "";
+    const badges = item.isFeatured ? '<span class="chamo-ifood-badge">Mais pedido</span>' : "";
+    const description = item.description || "Produto preparado pela cozinha do Frango Galactico.";
 
     return `
-      <a href="${storeBasePath}/produto/${encodeURIComponent(item.id)}" data-chamo-product-card data-chamo-name="${escapeHtml(item.name)}" class="group relative flex flex-col rounded-2xl bg-surface p-3 shadow-[var(--shadow-card)] hover:shadow-[var(--shadow-glow)] hover:-translate-y-0.5 transition">
-        <div class="absolute top-4 left-4 flex flex-col gap-1 z-10">${badges}</div>
-        <div class="aspect-square rounded-xl bg-background grid place-items-center overflow-hidden">
-          <img src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}" loading="lazy" width="800" height="800" class="h-full w-full ${imageFit} group-hover:scale-105 transition"/>
+      <a href="${storeBasePath}/produto/${encodeURIComponent(item.id)}" data-chamo-product-card data-chamo-name="${escapeHtml(item.name)}" class="chamo-ifood-item group">
+        <div class="chamo-ifood-info">
+          <div class="chamo-ifood-meta">${escapeHtml(category)}</div>
+          <h4>${escapeHtml(item.name)}</h4>
+          <p>${escapeHtml(description)}</p>
+          <div class="chamo-ifood-price-row">
+            <strong>${price(item.price)}</strong>
+            ${badges}
+          </div>
         </div>
-        <div class="mt-3 flex-1">
-          <div class="text-xs uppercase tracking-wider text-muted-foreground">${escapeHtml(category)}</div>
-          <div class="font-semibold text-sm text-foreground line-clamp-2 mt-0.5">${escapeHtml(item.name)}</div>
-        </div>
-        <div class="mt-2 flex items-baseline gap-2">
-          <span class="font-display text-xl text-primary">${price(item.price)}</span>
+        <div class="chamo-ifood-image">
+          <img src="${escapeHtml(image)}" alt="${escapeHtml(item.name)}" loading="lazy" width="800" height="800" class="${imageFit}"/>
         </div>
       </a>`;
   }
@@ -120,7 +122,7 @@
     return `
       <section class="container-app pt-10" data-chamo-dynamic-section${sectionAttrs}${hiddenStyle}>
         <h3 class="text-2xl mb-4">${escapeHtml(title)}</h3>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 xl:grid-cols-7 gap-3">
+        <div class="chamo-ifood-list">
           ${items.map((item) => card(item, store)).join("")}
         </div>
       </section>`;
@@ -190,6 +192,131 @@
         top: 48px;
         z-index: 35;
         margin: 0 !important;
+      }
+      .chamo-ifood-list {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 0.85rem;
+      }
+      .chamo-ifood-item {
+        min-height: 10.75rem;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 8.75rem;
+        gap: 1rem;
+        align-items: stretch;
+        border: 1px solid rgba(10, 17, 40, 0.08);
+        border-radius: 1rem;
+        background: #fff;
+        padding: 1rem;
+        box-shadow: 0 14px 35px -32px rgba(10, 17, 40, 0.55);
+        transition: border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+      }
+      .chamo-ifood-item:hover {
+        border-color: rgba(255, 199, 44, 0.75);
+        box-shadow: 0 22px 42px -34px rgba(10, 17, 40, 0.75);
+        transform: translateY(-1px);
+      }
+      .chamo-ifood-info {
+        min-width: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .chamo-ifood-meta {
+        color: rgba(10, 17, 40, 0.48);
+        font-size: 0.68rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .chamo-ifood-info h4 {
+        margin-top: 0.25rem;
+        color: #0a1128;
+        font-size: 1rem;
+        font-weight: 900;
+        line-height: 1.15;
+      }
+      .chamo-ifood-info p {
+        margin-top: 0.45rem;
+        color: rgba(10, 17, 40, 0.62);
+        font-size: 0.84rem;
+        line-height: 1.35;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+      .chamo-ifood-price-row {
+        margin-top: auto;
+        padding-top: 0.75rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.75rem;
+      }
+      .chamo-ifood-price-row strong {
+        color: #0a1128;
+        font-size: 1.05rem;
+        font-weight: 900;
+      }
+      .chamo-ifood-badge {
+        border-radius: 999px;
+        background: #0a1128;
+        color: #fff;
+        padding: 0.24rem 0.5rem;
+        font-size: 0.63rem;
+        font-weight: 900;
+        text-transform: uppercase;
+        white-space: nowrap;
+      }
+      .chamo-ifood-image {
+        position: relative;
+        min-height: 8.75rem;
+        border-radius: 0.9rem;
+        background: #f7f5f1;
+        overflow: hidden;
+      }
+      .chamo-ifood-image img {
+        height: 100%;
+        width: 100%;
+        object-position: center;
+        transition: transform 180ms ease;
+      }
+      .chamo-ifood-item:hover .chamo-ifood-image img {
+        transform: scale(1.035);
+      }
+      @media (max-width: 900px) {
+        .chamo-ifood-list {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 520px) {
+        .chamo-ifood-item {
+          min-height: 8.5rem;
+          grid-template-columns: minmax(0, 1fr) 6.5rem;
+          gap: 0.75rem;
+          padding: 0.75rem;
+          border-radius: 0.85rem;
+        }
+        .chamo-ifood-image {
+          min-height: 6.5rem;
+          border-radius: 0.75rem;
+        }
+        .chamo-ifood-meta {
+          font-size: 0.6rem;
+        }
+        .chamo-ifood-info h4 {
+          font-size: 0.92rem;
+        }
+        .chamo-ifood-info p {
+          font-size: 0.76rem;
+          -webkit-line-clamp: 2;
+        }
+        .chamo-ifood-price-row strong {
+          font-size: 0.95rem;
+        }
+        .chamo-ifood-badge {
+          display: none;
+        }
       }
     `;
     document.head.appendChild(style);
