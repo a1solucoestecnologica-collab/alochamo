@@ -9,6 +9,13 @@ import { nanoid } from "nanoid";
 import { eq, and, sql } from "drizzle-orm";
 import { users, orders } from "../drizzle/schema";
 
+const recipeInputSchema = z.array(z.object({
+  ingredientId: z.number(),
+  quantity: z.number().int().positive(),
+  unit: z.string().min(1).max(32),
+  notes: z.string().optional(),
+})).optional();
+
 // Middleware para verificar role de admin
 const adminProcedure = protectedProcedure.use(({ ctx, next }) => {
   if (ctx.user.role !== 'admin' && ctx.user.userType !== 'admin') {
@@ -384,6 +391,92 @@ export const appRouter = router({
     }),
 
     // Itens do cardápio
+    ingredients: router({
+      list: restaurantProcedure
+        .query(async ({ ctx }) => {
+          const restaurant = await db.getRestaurantByUserId(ctx.user.id);
+          if (!restaurant) throw new TRPCError({ code: 'NOT_FOUND' });
+          return db.getIngredientsByRestaurant(restaurant.id);
+        }),
+
+      create: restaurantProcedure
+        .input(z.object({
+          name: z.string().min(1),
+          supplier: z.string().optional(),
+          unit: z.string().min(1).max(32),
+          packageQuantity: z.number().int().positive(),
+          packageCost: z.number().int().min(0),
+          yieldPercent: z.number().int().min(1).max(100).optional(),
+          wastePercent: z.number().int().min(0).max(100).optional(),
+          minStockQuantity: z.number().int().min(0).optional(),
+          currentStockQuantity: z.number().int().min(0).optional(),
+        }))
+        .mutation(async ({ ctx, input }) => {
+          const restaurant = await db.getRestaurantByUserId(ctx.user.id);
+          if (!restaurant) throw new TRPCError({ code: 'NOT_FOUND' });
+          await db.createIngredient({
+            restaurantId: restaurant.id,
+            ...input,
+          });
+          return { success: true };
+        }),
+
+      update: restaurantProcedure
+        .input(z.object({
+          id: z.number(),
+          name: z.string().min(1).optional(),
+          supplier: z.string().optional(),
+          unit: z.string().min(1).max(32).optional(),
+          packageQuantity: z.number().int().positive().optional(),
+          packageCost: z.number().int().min(0).optional(),
+          yieldPercent: z.number().int().min(1).max(100).optional(),
+          wastePercent: z.number().int().min(0).max(100).optional(),
+          minStockQuantity: z.number().int().min(0).optional(),
+          currentStockQuantity: z.number().int().min(0).optional(),
+          isActive: z.boolean().optional(),
+        }))
+        .mutation(async ({ ctx, input }) => {
+          const restaurant = await db.getRestaurantByUserId(ctx.user.id);
+          if (!restaurant) throw new TRPCError({ code: 'NOT_FOUND' });
+          const { id, ...data } = input;
+          await db.updateIngredientForRestaurant(id, restaurant.id, data);
+          return { success: true };
+        }),
+
+      delete: restaurantProcedure
+        .input(z.object({ id: z.number() }))
+        .mutation(async ({ ctx, input }) => {
+          const restaurant = await db.getRestaurantByUserId(ctx.user.id);
+          if (!restaurant) throw new TRPCError({ code: 'NOT_FOUND' });
+          await db.deleteIngredientForRestaurant(input.id, restaurant.id);
+          return { success: true };
+        }),
+
+      listByItem: restaurantProcedure
+        .input(z.object({ itemId: z.number() }))
+        .query(async ({ ctx, input }) => {
+          const restaurant = await db.getRestaurantByUserId(ctx.user.id);
+          if (!restaurant) throw new TRPCError({ code: 'NOT_FOUND' });
+          const item = await db.getMenuItemById(input.itemId);
+          if (!item || item.restaurantId !== restaurant.id) {
+            throw new TRPCError({ code: 'FORBIDDEN', message: 'Item nao pertence a este restaurante' });
+          }
+          return db.getMenuItemIngredients(input.itemId);
+        }),
+
+      setForItem: restaurantProcedure
+        .input(z.object({
+          itemId: z.number(),
+          ingredients: recipeInputSchema.default([]),
+        }))
+        .mutation(async ({ ctx, input }) => {
+          const restaurant = await db.getRestaurantByUserId(ctx.user.id);
+          if (!restaurant) throw new TRPCError({ code: 'NOT_FOUND' });
+          await db.replaceMenuItemIngredients(input.itemId, restaurant.id, input.ingredients || []);
+          return { success: true };
+        }),
+    }),
+
     items: router({
       // Endpoint público para visualização
       listByRestaurant: publicProcedure
@@ -421,6 +514,7 @@ export const appRouter = router({
           price: z.number(),
           imageUrl: z.string().optional(),
           preparationTime: z.number().optional(),
+          ingredients: recipeInputSchema,
         }))
         .mutation(async ({ ctx, input }) => {
           const restaurant = await db.getRestaurantByUserId(ctx.user.id);
@@ -431,11 +525,19 @@ export const appRouter = router({
             throw new TRPCError({ code: 'FORBIDDEN', message: 'Categoria nao pertence a este restaurante' });
           }
           
-          await db.createMenuItem({
+          const { ingredients, ...itemData } = input;
+          const result: any = await db.createMenuItem({
             restaurantId: restaurant.id,
-            ...input,
+            ...itemData,
           });
-          return { success: true };
+          const inserted = Array.isArray(result) ? result[0] : result;
+          const itemId = Number(inserted?.insertId || 0);
+
+          if (itemId && ingredients) {
+            await db.replaceMenuItemIngredients(itemId, restaurant.id, ingredients);
+          }
+
+          return { success: true, itemId };
         }),
 
       update: restaurantProcedure
@@ -449,6 +551,7 @@ export const appRouter = router({
           isAvailable: z.boolean().optional(),
           isFeatured: z.boolean().optional(),
           preparationTime: z.number().optional(),
+          ingredients: recipeInputSchema,
         }))
         .mutation(async ({ ctx, input }) => {
           const restaurant = await db.getRestaurantByUserId(ctx.user.id);
@@ -461,8 +564,11 @@ export const appRouter = router({
             }
           }
 
-          const { id, ...data } = input;
+          const { id, ingredients, ...data } = input;
           await db.updateMenuItemForRestaurant(id, restaurant.id, data);
+          if (ingredients !== undefined) {
+            await db.replaceMenuItemIngredients(id, restaurant.id, ingredients);
+          }
           return { success: true };
         }),
 

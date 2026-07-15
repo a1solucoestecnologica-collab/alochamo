@@ -2,7 +2,7 @@ import { eq, and, desc, like, inArray, sql, gte, lte } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { 
   InsertUser, users, restaurants, menuCategories, menuItems, menuItemVariations,
-  additionals, itemAdditionals, combos, comboItems, orders, orderItems,
+  additionals, itemAdditionals, ingredients, menuItemIngredients, combos, comboItems, orders, orderItems,
   orderItemAdditionals, coupons, vouchers, voucherUsage, reviews,
   favorites, addresses, banners, restaurantCategories, featuredVouchers,
   restaurantHours, itemAvailability, crmCustomerSnapshot, crmCampaign, crmCampaignLog,
@@ -499,6 +499,130 @@ export async function deleteMenuCategoryForRestaurant(id: number, restaurantId: 
   const db = await getDb();
   if (!db) throw new Error("Database not available");
   return db.delete(menuCategories).where(and(eq(menuCategories.id, id), eq(menuCategories.restaurantId, restaurantId)));
+}
+
+// ============================================
+// INGREDIENTES / FICHA TECNICA
+// ============================================
+
+export async function getIngredientsByRestaurant(restaurantId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select()
+    .from(ingredients)
+    .where(and(eq(ingredients.restaurantId, restaurantId), eq(ingredients.isActive, true)))
+    .orderBy(ingredients.name);
+}
+
+export async function getIngredientById(id: number) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(ingredients).where(eq(ingredients.id, id)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function createIngredient(data: typeof ingredients.$inferInsert) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db.insert(ingredients).values(data);
+}
+
+export async function updateIngredientForRestaurant(
+  id: number,
+  restaurantId: number,
+  data: Partial<typeof ingredients.$inferInsert>
+) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db
+    .update(ingredients)
+    .set(data)
+    .where(and(eq(ingredients.id, id), eq(ingredients.restaurantId, restaurantId)));
+}
+
+export async function deleteIngredientForRestaurant(id: number, restaurantId: number) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  return db
+    .update(ingredients)
+    .set({ isActive: false })
+    .where(and(eq(ingredients.id, id), eq(ingredients.restaurantId, restaurantId)));
+}
+
+export async function getMenuItemIngredients(itemId: number) {
+  const db = await getDb();
+  if (!db) return [];
+  return db
+    .select({
+      id: menuItemIngredients.id,
+      itemId: menuItemIngredients.itemId,
+      ingredientId: menuItemIngredients.ingredientId,
+      quantity: menuItemIngredients.quantity,
+      unit: menuItemIngredients.unit,
+      notes: menuItemIngredients.notes,
+      ingredientName: ingredients.name,
+      ingredientUnit: ingredients.unit,
+      packageQuantity: ingredients.packageQuantity,
+      packageCost: ingredients.packageCost,
+      yieldPercent: ingredients.yieldPercent,
+      wastePercent: ingredients.wastePercent,
+    })
+    .from(menuItemIngredients)
+    .innerJoin(ingredients, eq(menuItemIngredients.ingredientId, ingredients.id))
+    .where(eq(menuItemIngredients.itemId, itemId));
+}
+
+export async function replaceMenuItemIngredients(
+  itemId: number,
+  restaurantId: number,
+  rows: Array<{
+    ingredientId: number;
+    quantity: number;
+    unit: string;
+    notes?: string | null;
+  }>
+) {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+
+  const item = await getMenuItemById(itemId);
+  if (!item || item.restaurantId !== restaurantId) {
+    throw new Error("Item not found for restaurant");
+  }
+
+  if (rows.length > 0) {
+    const ingredientRows = await db
+      .select({ id: ingredients.id })
+      .from(ingredients)
+      .where(and(
+        inArray(ingredients.id, rows.map((row) => row.ingredientId)),
+        eq(ingredients.restaurantId, restaurantId),
+        eq(ingredients.isActive, true)
+      ));
+
+    const allowedIds = new Set(ingredientRows.map((row) => row.id));
+    const invalid = rows.find((row) => !allowedIds.has(row.ingredientId));
+    if (invalid) {
+      throw new Error("Ingredient does not belong to this restaurant");
+    }
+  }
+
+  await db.delete(menuItemIngredients).where(eq(menuItemIngredients.itemId, itemId));
+
+  if (rows.length === 0) {
+    return;
+  }
+
+  await db.insert(menuItemIngredients).values(
+    rows.map((row) => ({
+      itemId,
+      ingredientId: row.ingredientId,
+      quantity: row.quantity,
+      unit: row.unit,
+      notes: row.notes || null,
+    }))
+  );
 }
 
 // ============================================

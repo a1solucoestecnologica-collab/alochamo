@@ -78,6 +78,13 @@
       "when": 1768952613563,
       "tag": "0010_short_salo",
       "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "5",
+      "when": 1784073600000,
+      "tag": "0011_industrial_ingredients",
+      "breakpoints": true
     }
   ]
 }

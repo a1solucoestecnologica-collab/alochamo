@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { trpc } from "@/lib/trpc";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,6 +12,18 @@ import { Plus, Edit, Trash2, Image as ImageIcon, ArrowUpDown, ArrowUp, ArrowDown
 import { toast } from "sonner";
 import ImageUpload from "@/components/ImageUpload";
 import CombosManagement from "@/components/CombosManagement";
+import IngredientsManagement from "@/components/IngredientsManagement";
+
+const quantityToScaled = (value: string | number) => Math.round(Number(value || 0) * 1000);
+const scaledToQuantity = (value?: number | null) => ((value || 0) / 1000).toString();
+const formatMoney = (cents: number) => `R$ ${(cents / 100).toFixed(2)}`;
+
+function getIngredientCost(ingredient: any, quantity: number) {
+  const yieldFactor = Math.max(1, Number(ingredient?.yieldPercent || 100)) / 100;
+  const wasteFactor = Math.max(0, 100 - Number(ingredient?.wastePercent || 0)) / 100;
+  const usableQuantity = Math.max(1, Number(ingredient?.packageQuantity || 0) * yieldFactor * wasteFactor);
+  return (Number(ingredient?.packageCost || 0) / usableQuantity) * quantity;
+}
 
 // Componente para gerenciar variações de tamanho
 function VariationsManager({ itemId }: { itemId: number }) {
@@ -354,9 +366,10 @@ export default function MenuManagement() {
 
   return (
     <Tabs defaultValue="items" className="w-full">
-      <TabsList className="grid w-full grid-cols-4">
+      <TabsList className="grid w-full grid-cols-5">
         <TabsTrigger value="items">Itens do Cardápio</TabsTrigger>
         <TabsTrigger value="categories">Categorias</TabsTrigger>
+        <TabsTrigger value="ingredients">Ingredientes</TabsTrigger>
         <TabsTrigger value="additionals">Adicionais</TabsTrigger>
         <TabsTrigger value="combos">Combos</TabsTrigger>
       </TabsList>
@@ -757,6 +770,10 @@ export default function MenuManagement() {
       </TabsContent>
 
       {/* ADICIONAIS */}
+      <TabsContent value="ingredients" className="space-y-4">
+        <IngredientsManagement />
+      </TabsContent>
+
       <TabsContent value="additionals" className="space-y-4">
         <div className="flex justify-between items-center">
           <div>
@@ -951,6 +968,45 @@ function ItemForm({ item, categories, onSubmit, onCancel }: any) {
     isFeatured: item?.isFeatured ?? false,
     preparationTime: item?.preparationTime || "",
   });
+  const [recipeRows, setRecipeRows] = useState<Array<{ ingredientId: string; quantity: string; unit: string; notes: string }>>([]);
+  const { data: ingredients } = trpc.menu.ingredients.list.useQuery();
+  const { data: savedRecipe } = trpc.menu.ingredients.listByItem.useQuery(
+    { itemId: item?.id || 0 },
+    { enabled: !!item?.id }
+  );
+
+  useEffect(() => {
+    if (!item?.id) {
+      setRecipeRows([]);
+      return;
+    }
+    if (savedRecipe) {
+      setRecipeRows(savedRecipe.map((row: any) => ({
+        ingredientId: row.ingredientId.toString(),
+        quantity: scaledToQuantity(row.quantity),
+        unit: row.unit || row.ingredientUnit || "g",
+        notes: row.notes || "",
+      })));
+    }
+  }, [item?.id, savedRecipe]);
+
+  const selectedRecipe = recipeRows
+    .filter((row) => row.ingredientId && Number(row.quantity) > 0)
+    .map((row) => {
+      const ingredient = ingredients?.find((item: any) => item.id.toString() === row.ingredientId);
+      const scaledQuantity = quantityToScaled(row.quantity);
+      return {
+        ...row,
+        ingredient,
+        scaledQuantity,
+        cost: ingredient ? getIngredientCost(ingredient, scaledQuantity) : 0,
+      };
+    });
+
+  const recipeCost = Math.round(selectedRecipe.reduce((sum, row) => sum + row.cost, 0));
+  const salePrice = Math.round(parseFloat(formData.price || "0") * 100);
+  const margin = salePrice > 0 ? ((salePrice - recipeCost) / salePrice) * 100 : 0;
+  const suggestedPrice = recipeCost > 0 ? Math.ceil(recipeCost / 0.3) : 0;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -963,6 +1019,12 @@ function ItemForm({ item, categories, onSubmit, onCancel }: any) {
       isAvailable: formData.isAvailable,
       isFeatured: formData.isFeatured,
       preparationTime: formData.preparationTime ? parseInt(formData.preparationTime) : undefined,
+      ingredients: selectedRecipe.map((row) => ({
+        ingredientId: parseInt(row.ingredientId, 10),
+        quantity: row.scaledQuantity,
+        unit: row.unit,
+        notes: row.notes || undefined,
+      })),
     });
   };
 
@@ -1044,6 +1106,126 @@ function ItemForm({ item, categories, onSubmit, onCancel }: any) {
         onChange={(url) => setFormData({ ...formData, imageUrl: url })}
         maxSizeMB={5}
       />
+
+      <div className="space-y-3 border-t pt-4">
+        <div className="flex items-start justify-between gap-3">
+          <div>
+            <h4 className="font-medium">Ficha tecnica e custo</h4>
+            <p className="text-sm text-muted-foreground">
+              Vincule os ingredientes para o Chamo calcular custo, margem e preco sugerido.
+            </p>
+          </div>
+          <Button
+            type="button"
+            variant="outline"
+            size="sm"
+            onClick={() => setRecipeRows([...recipeRows, { ingredientId: "", quantity: "", unit: "g", notes: "" }])}
+          >
+            <Plus className="w-4 h-4 mr-1" />
+            Ingrediente
+          </Button>
+        </div>
+
+        {recipeRows.length === 0 ? (
+          <div className="rounded-lg border border-dashed p-4 text-sm text-muted-foreground">
+            Cadastre os insumos na aba Ingredientes e adicione aqui a quantidade usada neste produto.
+          </div>
+        ) : (
+          <div className="space-y-2">
+            {recipeRows.map((row, index) => {
+              const ingredient = ingredients?.find((item: any) => item.id.toString() === row.ingredientId);
+              const rowCost = ingredient ? Math.round(getIngredientCost(ingredient, quantityToScaled(row.quantity))) : 0;
+              return (
+                <div key={index} className="grid gap-2 rounded-lg border p-3 md:grid-cols-[1.6fr_0.7fr_0.6fr_0.8fr_auto]">
+                  <div className="space-y-1">
+                    <Label className="text-xs">Ingrediente</Label>
+                    <Select
+                      value={row.ingredientId}
+                      onValueChange={(value) => {
+                        const ingredient = ingredients?.find((item: any) => item.id.toString() === value);
+                        const next = [...recipeRows];
+                        next[index] = { ...row, ingredientId: value, unit: ingredient?.unit || row.unit || "g" };
+                        setRecipeRows(next);
+                      }}
+                    >
+                      <SelectTrigger>
+                        <SelectValue placeholder="Selecione" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {(ingredients || []).map((ingredient: any) => (
+                          <SelectItem key={ingredient.id} value={ingredient.id.toString()}>
+                            {ingredient.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-xs">Qtd.</Label>
+                    <Input
+                      type="number"
+                      step="0.001"
+                      min="0"
+                      value={row.quantity}
+                      onChange={(event) => {
+                        const next = [...recipeRows];
+                        next[index] = { ...row, quantity: event.target.value };
+                        setRecipeRows(next);
+                      }}
+                      placeholder="0"
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-xs">Un.</Label>
+                    <Input
+                      value={row.unit}
+                      onChange={(event) => {
+                        const next = [...recipeRows];
+                        next[index] = { ...row, unit: event.target.value };
+                        setRecipeRows(next);
+                      }}
+                    />
+                  </div>
+                  <div className="space-y-1">
+                    <Label className="text-xs">Custo</Label>
+                    <div className="flex h-10 items-center rounded-md border bg-muted px-3 text-sm font-medium">
+                      {formatMoney(rowCost)}
+                    </div>
+                  </div>
+                  <div className="flex items-end">
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="text-destructive hover:text-destructive"
+                      onClick={() => setRecipeRows(recipeRows.filter((_, rowIndex) => rowIndex !== index))}
+                    >
+                      <Trash2 className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        <div className="grid gap-3 md:grid-cols-3">
+          <div className="rounded-lg border bg-muted/40 p-3">
+            <div className="text-xs text-muted-foreground">Custo do produto</div>
+            <div className="text-lg font-semibold">{formatMoney(recipeCost)}</div>
+          </div>
+          <div className="rounded-lg border bg-muted/40 p-3">
+            <div className="text-xs text-muted-foreground">Margem atual</div>
+            <div className={`text-lg font-semibold ${margin < 30 && recipeCost > 0 ? "text-destructive" : ""}`}>
+              {recipeCost > 0 && salePrice > 0 ? `${margin.toFixed(1)}%` : "-"}
+            </div>
+          </div>
+          <div className="rounded-lg border bg-muted/40 p-3">
+            <div className="text-xs text-muted-foreground">Preco sugerido (CMV 30%)</div>
+            <div className="text-lg font-semibold">{suggestedPrice > 0 ? formatMoney(suggestedPrice) : "-"}</div>
+          </div>
+        </div>
+      </div>
 
       {item?.id && (
         <div className="space-y-3 border-t pt-4">

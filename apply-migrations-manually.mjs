@@ -42,6 +42,7 @@ try {
     '0008_fat_hydra.sql',
     '0009_freezing_texas_twister.sql',
     '0010_short_salo.sql',
+    '0011_industrial_ingredients.sql',
   ];
 
   for (const migration of migrations) {
@@ -49,7 +50,13 @@ try {
       const sql = readFileSync(join(process.cwd(), 'drizzle', migration), 'utf-8');
       // Substituir DEFAULT (now()) por DEFAULT CURRENT_TIMESTAMP para compatibilidade
       const fixedSql = sql.replace(/DEFAULT \(now\(\)\)/g, 'DEFAULT CURRENT_TIMESTAMP');
-      await connection.query(fixedSql);
+      const statements = fixedSql
+        .split('--> statement-breakpoint')
+        .map((statement) => statement.trim())
+        .filter(Boolean);
+      for (const statement of statements) {
+        await connection.query(statement);
+      }
       console.log(`✓ ${migration} aplicada`);
     } catch (error) {
       if (error.code === 'ER_TABLE_EXISTS_ERROR' || error.message.includes('already exists')) {

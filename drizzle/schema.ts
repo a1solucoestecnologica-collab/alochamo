@@ -167,6 +167,41 @@ export const itemAdditionals = mysqlTable("itemAdditionals", {
 });
 
 /**
+ * INGREDIENTES / INSUMOS
+ * Base de custos por restaurante para ficha tecnica e precificacao.
+ */
+export const ingredients = mysqlTable("ingredients", {
+  id: int("id").autoincrement().primaryKey(),
+  restaurantId: int("restaurantId").notNull(),
+  name: varchar("name", { length: 255 }).notNull(),
+  supplier: varchar("supplier", { length: 255 }),
+  unit: varchar("unit", { length: 32 }).default("g").notNull(),
+  packageQuantity: int("packageQuantity").default(1000).notNull(), // Quantidade * 1000
+  packageCost: int("packageCost").default(0).notNull(), // Em centavos
+  yieldPercent: int("yieldPercent").default(100).notNull(),
+  wastePercent: int("wastePercent").default(0).notNull(),
+  minStockQuantity: int("minStockQuantity").default(0).notNull(), // Quantidade * 1000
+  currentStockQuantity: int("currentStockQuantity").default(0).notNull(), // Quantidade * 1000
+  isActive: boolean("isActive").default(true).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+/**
+ * FICHA TECNICA DO PRODUTO
+ */
+export const menuItemIngredients = mysqlTable("menuItemIngredients", {
+  id: int("id").autoincrement().primaryKey(),
+  itemId: int("itemId").notNull(),
+  ingredientId: int("ingredientId").notNull(),
+  quantity: int("quantity").notNull(), // Quantidade * 1000
+  unit: varchar("unit", { length: 32 }).default("g").notNull(),
+  notes: text("notes"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+/**
  * COMBOS
  */
 export const combos = mysqlTable("combos", {
@@ -489,6 +524,8 @@ export type InsertUser = typeof users.$inferInsert;
 export type InsertMenuItemVariation = typeof menuItemVariations.$inferInsert;
 export type Restaurant = typeof restaurants.$inferSelect;
 export type MenuItem = typeof menuItems.$inferSelect;
+export type Ingredient = typeof ingredients.$inferSelect;
+export type MenuItemIngredient = typeof menuItemIngredients.$inferSelect;
 export type Order = typeof orders.$inferSelect;
 export type Review = typeof reviews.$inferSelect;
 export type FeaturedVoucher = typeof featuredVouchers.$inferSelect;
