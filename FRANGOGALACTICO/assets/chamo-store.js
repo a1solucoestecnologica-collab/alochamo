@@ -256,7 +256,7 @@
       .chamo-ifood-price-row strong {
         color: #0a1128;
         font-size: 1.05rem;
-        font-weight: 900;
+        font-weight: 600;
       }
       .chamo-ifood-badge {
         border-radius: 999px;
